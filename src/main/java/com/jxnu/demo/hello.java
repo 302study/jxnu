@@ -11,7 +11,7 @@ public class hello {
    @Autowired
    private stuservice sdsaty;
     @RequestMapping("/hello")
-    public String say(){
+    public String saaay(){
         student st=sdsaty.findstu();
         return st.getTest();
     }
