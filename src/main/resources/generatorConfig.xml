@@ -47,5 +47,11 @@
         </table>
         <table tableName="reply">
         </table>
+        <table tableName="secondary_reply">
+        </table>
+        <table tableName="topic">
+        </table>
+        <table tableName="user_info">
+        </table>
     </context>
 </generatorConfiguration>
