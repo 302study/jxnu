@@ -1,4 +1,8 @@
 package com.jxnu.demo.dao;
 
-public class studao {
+import com.jxnu.demo.bean.student;
+
+public interface studao {
+
+    student findstu();
 }
