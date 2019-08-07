@@ -1,5 +1,7 @@
 package com.jxnu.demo;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jxnu.demo.bean.student;
 import com.jxnu.demo.service.stuservice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,10 @@ public class hello {
    @Autowired
    private stuservice sdsaty;
     @RequestMapping("/hello")
-    public String saaay(){
+    public String saaay() throws JsonProcessingException {
         student st=sdsaty.findstu();
-        return st.getTest();
+        ObjectMapper mapper=new ObjectMapper();
+        String student=mapper.writeValueAsString(st);
+        return student;
     }
 }
