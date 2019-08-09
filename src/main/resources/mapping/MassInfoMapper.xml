@@ -300,4 +300,10 @@
       state = #{state,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="SelectMass" resultMap="BaseResultMap">
+    select * from mass_info order by priority
+  </select>
+
+
 </mapper>
