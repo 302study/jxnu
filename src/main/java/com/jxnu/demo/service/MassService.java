@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface MassService {
 
-    List<MassInfo> selectMass();
+    List<MassInfo> selectMass() throws Exception;
 
 
 

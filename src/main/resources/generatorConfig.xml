@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-
     <!-- defaultModelType="flat" 设置复合主键时不单独为主键创建实体 -->
     <context id="MySql" defaultModelType="flat">
         <!-- 生成的POJO实现java.io.Serializable接口 -->
@@ -19,7 +18,7 @@
         <!-- 数据库连接 -->
         <jdbcConnection
                 driverClass="com.mysql.jdbc.Driver"
-                connectionURL="jdbc:mysql://47.106.141.130:3306/jxnu?characterEncoding=utf8"
+                connectionURL="jdbc:mysql://47.100.242.234:3306/jxnu?characterEncoding=utf8"
                 userId="root"
                 password="123456"/>
 
@@ -41,17 +40,8 @@
         </table>
         <table tableName="activity_user">
         </table>
-        <table tableName="mass_info">
+        <table tableName="contentUser">
         </table>
-        <table tableName="mass_user">
-        </table>
-        <table tableName="reply">
-        </table>
-        <table tableName="secondary_reply">
-        </table>
-        <table tableName="topic">
-        </table>
-        <table tableName="user_info">
-        </table>
+
     </context>
 </generatorConfiguration>
