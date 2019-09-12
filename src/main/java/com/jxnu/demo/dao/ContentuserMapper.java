@@ -93,4 +93,6 @@ public interface ContentuserMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Contentuser record);
+
+    Contentuser login(String Administrator);
 }

@@ -38,10 +38,10 @@
             <!-- 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 -->
             <domainObjectRenamingRule searchString="^Tbl" replaceString=""/>
         </table>
-        <table tableName="activity_user">
-        </table>
-        <table tableName="contentUser">
-        </table>
+<!--        <table tableName="activity_user">-->
+<!--        </table>-->
+<!--        <table tableName="contentUser">-->
+<!--        </table>-->
 
     </context>
 </generatorConfiguration>
