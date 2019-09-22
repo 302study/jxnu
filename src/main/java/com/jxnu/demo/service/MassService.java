@@ -8,4 +8,11 @@ import java.util.List;
 public interface MassService {
 
     List<MassInfo> selectMass() throws Exception;
+
+    int add(MassInfo massinfo) throws Exception;
+
+    int del(MassInfo massinfo) throws Exception;
+
+    int update(MassInfo massinfo) throws  Exception;
+
 }
