@@ -111,6 +111,7 @@
     <include refid="Base_Column_List" />
     from mass_user
     where id = #{id,jdbcType=INTEGER}
+    order by priority
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
