@@ -38,5 +38,11 @@ public class MassServiceImpl implements MassService {
         return bac.updateByPrimaryKeySelective(massinfo);
     }
 
+    @Override
+    public MassInfo selectByPrimaryKey(Integer id) {
+        MassInfo massInfo=bac.selectByPrimaryKey(id);
+        return massInfo;
+    }
+
 
 }

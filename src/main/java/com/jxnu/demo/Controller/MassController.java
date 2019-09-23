@@ -1,4 +1,4 @@
-package com.jxnu.demo.Controller;
+package com.jxnu.demo.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,6 +10,7 @@ import com.jxnu.demo.service.ContentUseService;
 import com.jxnu.demo.service.MassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,6 +18,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/MassController")
+@CrossOrigin(allowCredentials = "true")
 public class MassController {
     @Autowired
     MassService massService;
@@ -31,6 +33,17 @@ public class MassController {
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),null);
         }else{
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),list);
+        }
+    }
+
+    @RequestMapping("/selectMass")
+    @ResponseBody
+    public ServerResponse selectByPrimaryKey(Integer id) throws Exception {
+        MassInfo massInfo=massService.selectByPrimaryKey(id);
+        if(massInfo == null){
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),null);
+        }else{
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),massInfo);
         }
     }
 
