@@ -102,6 +102,7 @@
       <include refid="Example_Where_Clause" />
     </if>
     <if test="orderByClause != null">
+    where id!=1
       order by ${orderByClause}
     </if>
   </select>
