@@ -36,7 +36,7 @@ public class MassController {
         }
     }
 
-    @RequestMapping("/selectMass")
+    @RequestMapping("/selectByPrimaryKey")
     @ResponseBody
     public ServerResponse selectByPrimaryKey(Integer id) throws Exception {
         MassInfo massInfo=massService.selectByPrimaryKey(id);

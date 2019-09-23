@@ -102,6 +102,7 @@
       <include refid="Example_Where_Clause" />
     </if>
     <if test="orderByClause != null">
+    where id!=1
       order by ${orderByClause}
     </if>
   </select>
@@ -113,7 +114,7 @@
     select
     <include refid="Base_Column_List" />
     from mass_info
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER} and state!=1
     order by priority
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
