@@ -113,7 +113,7 @@
     select 
     <include refid="Base_Column_List" />
     from reply
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER} and state != 1
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--

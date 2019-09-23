@@ -69,5 +69,38 @@ public class MassController {
         return ServerResponse.CreateServerResponse(ReturnCode.INSERT_SUCCESS.getCode(),ReturnCode.INSERT_SUCCESS.getMsg());
     }
 
+    @RequestMapping("/update")
+    @ResponseBody
+    public ServerResponse updateMass(MassInfo massInfo) throws Exception {
+
+        try {
+            massService.update(massInfo);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.UPDATE_ERROR.getCode(),ReturnCode.UPDATE_ERROR.getMsg());
+        }
+
+        return ServerResponse.CreateServerResponse(ReturnCode.UPDATE_SUCCESS.getCode(),ReturnCode.UPDATE_SUCCESS.getMsg());
+    }
+
+    /**
+     * 删除，
+     * @param massInfo id
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/delete")
+    @ResponseBody
+    public ServerResponse deleteMass(MassInfo massInfo) throws Exception {
+
+        try {
+            massInfo.setState(1);
+            massService.update(massInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.DELETE_ERROR.getCode(),ReturnCode.DELETE_ERROR.getMsg());
+        }
+        return ServerResponse.CreateServerResponse(ReturnCode.DELETE_SUCCESS.getCode(),ReturnCode.DELETE_SUCCESS.getMsg());
+    }
 
 }

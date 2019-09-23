@@ -114,7 +114,7 @@
     select 
     <include refid="Base_Column_List" />
     from topic
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER} and state != 1
     order by priority
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
