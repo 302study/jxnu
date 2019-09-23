@@ -113,7 +113,7 @@
     select
     <include refid="Base_Column_List" />
     from mass_info
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER} and state!=1
     order by priority
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -303,7 +303,10 @@
   </update>
 
   <select id="SelectMass" resultMap="BaseResultMap">
-    select * from mass_info order by priority
+    select *
+    from mass_info
+    order by priority
+    where state != 1
   </select>
 
 

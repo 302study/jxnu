@@ -14,6 +14,7 @@ public interface MassService {
     int del(MassInfo massinfo) throws Exception;
 
     int update(MassInfo massinfo) throws  Exception;
+
     MassInfo selectByPrimaryKey(Integer id);
 
 }

@@ -93,4 +93,7 @@ public interface MassUserMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(MassUser record);
+
+    List<Integer> selectUserIdByMassId(Integer mass_id);
+
 }

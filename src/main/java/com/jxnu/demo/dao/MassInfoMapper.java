@@ -92,5 +92,6 @@ public interface MassInfoMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(MassInfo record);
+
     List<MassInfo> SelectMass();
 }
