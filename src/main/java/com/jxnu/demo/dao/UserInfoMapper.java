@@ -93,4 +93,6 @@ public interface UserInfoMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(UserInfo record);
+
+    List<UserInfo> selectByListId(@Param("listId") List<Integer> listId);
 }

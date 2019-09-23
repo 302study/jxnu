@@ -4,10 +4,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jxnu.demo.bean.Contentuser;
 import com.jxnu.demo.bean.MassInfo;
+import com.jxnu.demo.bean.UserInfo;
 import com.jxnu.demo.commoon.ReturnCode;
 import com.jxnu.demo.commoon.ServerResponse;
 import com.jxnu.demo.service.ContentUseService;
 import com.jxnu.demo.service.MassService;
+import com.jxnu.demo.service.MassUserService;
+import com.jxnu.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,6 +27,10 @@ public class MassController {
     MassService massService;
     @Autowired
     ContentUseService contentUseService;
+    @Autowired
+    MassUserService massUserService;
+    @Autowired
+    UserService userService;
 
     @RequestMapping("/selectMass")
     @ResponseBody
@@ -101,6 +108,21 @@ public class MassController {
             return ServerResponse.CreateServerResponse(ReturnCode.DELETE_ERROR.getCode(),ReturnCode.DELETE_ERROR.getMsg());
         }
         return ServerResponse.CreateServerResponse(ReturnCode.DELETE_SUCCESS.getCode(),ReturnCode.DELETE_SUCCESS.getMsg());
+    }
+
+    @RequestMapping("/selectUser")
+    @ResponseBody
+    public ServerResponse selectUser(int mass_id) throws  Exception {
+        List<UserInfo> list_user;
+
+        try {
+            List<Integer> user_id=massUserService.selectMassUser(mass_id);
+            list_user=userService.selectByListId(user_id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg());
+        }
+        return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),list_user);
     }
 
 }

@@ -255,7 +255,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectUserIdByMassId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectUserIdByMassId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
     select user_id
     from mass_user
     where mass_id = #{mass_id,jdbcType=INTEGER} and state != 1

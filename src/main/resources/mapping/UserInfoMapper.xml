@@ -301,4 +301,18 @@
       forbidden_words = #{forbiddenWords,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectByListId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_info
+    <if test="listId != null">
+      where id in (
+      <foreach collection="listId" item="i" separator=",">
+        #{i}
+      </foreach>
+      )
+    </if>
+  </select>
+  
 </mapper>
