@@ -321,8 +321,8 @@
   <select id="SelectMass" resultMap="BaseResultMap">
     select *
     from mass_info
-    order by priority
     where state != 1
+    order by priority
   </select>
 
   <update id="updateMassLeader" parameterType="java.lang.Integer">
