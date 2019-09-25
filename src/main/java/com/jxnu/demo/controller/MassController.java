@@ -82,12 +82,12 @@ public class MassController {
 
         try {
             massService.update(massInfo);
+            massService.updateMassLeader(massInfo.getId(),massInfo.getLeader_userId());
+            return ServerResponse.CreateServerResponse(ReturnCode.UPDATE_SUCCESS.getCode(),ReturnCode.UPDATE_SUCCESS.getMsg());
         }catch (Exception e){
             e.printStackTrace();
             return ServerResponse.CreateServerResponse(ReturnCode.UPDATE_ERROR.getCode(),ReturnCode.UPDATE_ERROR.getMsg());
         }
-
-        return ServerResponse.CreateServerResponse(ReturnCode.UPDATE_SUCCESS.getCode(),ReturnCode.UPDATE_SUCCESS.getMsg());
     }
 
     /**

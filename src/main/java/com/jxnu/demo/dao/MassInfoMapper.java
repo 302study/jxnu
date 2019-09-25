@@ -94,4 +94,6 @@ public interface MassInfoMapper {
     int updateByPrimaryKey(MassInfo record);
 
     List<MassInfo> SelectMass();
+
+    int updateMassLeader(int id,int user_id);
 }

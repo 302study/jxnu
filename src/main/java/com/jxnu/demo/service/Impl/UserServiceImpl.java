@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
     UserInfoMapper bac;
 
     @Override
-    public List<UserInfo> selectByListId(List<Integer> listId) {
+    public List<UserInfo> selectByListId(List<Integer> listId) throws Exception{
         return bac.selectByListId(listId);
     }
 }

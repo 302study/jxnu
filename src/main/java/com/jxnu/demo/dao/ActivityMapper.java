@@ -93,4 +93,6 @@ public interface ActivityMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Activity record);
+
+    List<Activity> selectAll();
 }

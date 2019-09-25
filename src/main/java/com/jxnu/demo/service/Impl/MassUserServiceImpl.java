@@ -15,7 +15,7 @@ public class MassUserServiceImpl implements MassUserService {
     private MassUserMapper bac;
 
     @Override
-    public List<Integer> selectMassUser(int id) {
+    public List<Integer> selectMassUser(int id) throws Exception{
         return bac.selectUserIdByMassId(id);
     }
 }

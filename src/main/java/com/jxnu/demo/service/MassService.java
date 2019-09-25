@@ -7,14 +7,15 @@ import java.util.List;
 
 public interface MassService {
 
-    List<MassInfo> selectMass() throws Exception;
+    List<MassInfo> selectMass();
 
-    int add(MassInfo massinfo) throws Exception;
+    int add(MassInfo massinfo);
 
-    int del(MassInfo massinfo) throws Exception;
+    int del(MassInfo massinfo);
 
-    int update(MassInfo massinfo) throws  Exception;
+    int update(MassInfo massinfo);
 
     MassInfo selectByPrimaryKey(Integer id);
 
+    int updateMassLeader(Integer id,Integer user_id);
 }
