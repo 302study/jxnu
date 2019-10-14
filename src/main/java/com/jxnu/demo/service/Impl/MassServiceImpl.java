@@ -1,6 +1,7 @@
 package com.jxnu.demo.service.Impl;
 
 import com.jxnu.demo.bean.MassInfo;
+import com.jxnu.demo.bean.UserInfo;
 import com.jxnu.demo.dao.MassInfoMapper;
 import com.jxnu.demo.service.MassService;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,11 @@ public class MassServiceImpl implements MassService {
     @Override
     public int updateMassLeader(Integer id,Integer user_id) {
         return bac.updateMassLeader(id,user_id);
+    }
+
+    @Override
+    public List<UserInfo> selectMassUser(Integer id) {
+        return bac.selectMassUser(id);
     }
 
 

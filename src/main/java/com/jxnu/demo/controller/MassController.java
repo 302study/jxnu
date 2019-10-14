@@ -34,7 +34,7 @@ public class MassController {
 
     @RequestMapping("/selectMass")
     @ResponseBody
-    public ServerResponse selectMass() throws Exception {
+    public ServerResponse selectMass()  {
         List<MassInfo> list=massService.selectMass();
         if(list == null){
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),null);
@@ -45,7 +45,7 @@ public class MassController {
 
     @RequestMapping("/selectByPrimaryKey")
     @ResponseBody
-    public ServerResponse selectByPrimaryKey(Integer id) throws Exception {
+    public ServerResponse selectByPrimaryKey(Integer id)  {
         MassInfo massInfo=massService.selectByPrimaryKey(id);
         if(massInfo == null){
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),null);
@@ -64,7 +64,7 @@ public class MassController {
 
     @RequestMapping("/insert")
     @ResponseBody
-    public ServerResponse insertMass(MassInfo massInfo) throws Exception {
+    public ServerResponse insertMass(MassInfo massInfo) {
 
         try {
             massService.add(massInfo);
@@ -78,7 +78,7 @@ public class MassController {
 
     @RequestMapping("/update")
     @ResponseBody
-    public ServerResponse updateMass(MassInfo massInfo) throws Exception {
+    public ServerResponse updateMass(MassInfo massInfo) {
 
         try {
             massService.update(massInfo);
@@ -98,7 +98,7 @@ public class MassController {
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public ServerResponse deleteMass(MassInfo massInfo) throws Exception {
+    public ServerResponse deleteMass(MassInfo massInfo) {
 
         try {
             massInfo.setState(1);
@@ -110,9 +110,14 @@ public class MassController {
         return ServerResponse.CreateServerResponse(ReturnCode.DELETE_SUCCESS.getCode(),ReturnCode.DELETE_SUCCESS.getMsg());
     }
 
+    /**
+     * select User By mass_id
+     * @param mass_id
+     * @return
+     */
     @RequestMapping("/selectUser")
     @ResponseBody
-    public ServerResponse selectUser(int mass_id) throws  Exception {
+    public ServerResponse selectUser(Integer mass_id) {
         List<UserInfo> list_user;
 
         try {
@@ -123,6 +128,21 @@ public class MassController {
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg());
         }
         return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),list_user);
+    }
+
+    @RequestMapping("/selectMassUser")
+    @ResponseBody
+    public ServerResponse selectMassUser(Integer mass_id) {
+        List<UserInfo> list_user;
+
+        try {
+            list_user=massService.selectMassUser(mass_id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg());
+        }
+        return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),list_user);
+
     }
 
 }

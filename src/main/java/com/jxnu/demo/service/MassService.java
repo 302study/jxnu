@@ -1,6 +1,7 @@
 package com.jxnu.demo.service;
 
 import com.jxnu.demo.bean.MassInfo;
+import com.jxnu.demo.bean.UserInfo;
 import com.jxnu.demo.dao.MassInfoMapper;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface MassService {
     MassInfo selectByPrimaryKey(Integer id);
 
     int updateMassLeader(Integer id,Integer user_id);
+
+    List<UserInfo> selectMassUser(Integer id);
 }

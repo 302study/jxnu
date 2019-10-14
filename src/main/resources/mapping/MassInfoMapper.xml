@@ -333,5 +333,12 @@
     where mass.id=#{id,jdbcType=INTEGER}
   </update>
 
+  <select id="selectMassUser" resultMap="BaseResultMap">
+    select u.*
+    from mass_user m,user_info u
+    where m.user_id=u.id
+    and m.mass_id=#{user_id,jdbcType=INTEGER}
+  </select>
+
 
 </mapper>

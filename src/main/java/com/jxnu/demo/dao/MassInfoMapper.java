@@ -3,6 +3,8 @@ package com.jxnu.demo.dao;
 import com.jxnu.demo.bean.MassInfo;
 import com.jxnu.demo.bean.MassInfoExample;
 import java.util.List;
+
+import com.jxnu.demo.bean.UserInfo;
 import org.apache.ibatis.annotations.Param;
 
 public interface MassInfoMapper {
@@ -95,5 +97,8 @@ public interface MassInfoMapper {
 
     List<MassInfo> SelectMass();
 
-    int updateMassLeader(int id,int user_id);
+    int updateMassLeader(Integer id,Integer user_id);
+
+    List<UserInfo> selectMassUser(Integer id);
+
 }
