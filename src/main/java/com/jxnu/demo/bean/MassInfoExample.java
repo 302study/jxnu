@@ -454,6 +454,66 @@ public class MassInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andLeaderUseridIsNull() {
+            addCriterion("leader_userId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeaderUseridIsNotNull() {
+            addCriterion("leader_userId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeaderUseridEqualTo(Integer value) {
+            addCriterion("leader_userId =", value, "leaderUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeaderUseridNotEqualTo(Integer value) {
+            addCriterion("leader_userId <>", value, "leaderUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeaderUseridGreaterThan(Integer value) {
+            addCriterion("leader_userId >", value, "leaderUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeaderUseridGreaterThanOrEqualTo(Integer value) {
+            addCriterion("leader_userId >=", value, "leaderUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeaderUseridLessThan(Integer value) {
+            addCriterion("leader_userId <", value, "leaderUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeaderUseridLessThanOrEqualTo(Integer value) {
+            addCriterion("leader_userId <=", value, "leaderUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeaderUseridIn(List<Integer> values) {
+            addCriterion("leader_userId in", values, "leaderUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeaderUseridNotIn(List<Integer> values) {
+            addCriterion("leader_userId not in", values, "leaderUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeaderUseridBetween(Integer value1, Integer value2) {
+            addCriterion("leader_userId between", value1, value2, "leaderUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeaderUseridNotBetween(Integer value1, Integer value2) {
+            addCriterion("leader_userId not between", value1, value2, "leaderUserid");
+            return (Criteria) this;
+        }
+
         public Criteria andLeaderIsNull() {
             addCriterion("leader is null");
             return (Criteria) this;
@@ -641,6 +701,76 @@ public class MassInfoExample {
 
         public Criteria andStateNotBetween(Integer value1, Integer value2) {
             addCriterion("state not between", value1, value2, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIsNull() {
+            addCriterion("photo is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIsNotNull() {
+            addCriterion("photo is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoEqualTo(String value) {
+            addCriterion("photo =", value, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoNotEqualTo(String value) {
+            addCriterion("photo <>", value, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoGreaterThan(String value) {
+            addCriterion("photo >", value, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoGreaterThanOrEqualTo(String value) {
+            addCriterion("photo >=", value, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoLessThan(String value) {
+            addCriterion("photo <", value, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoLessThanOrEqualTo(String value) {
+            addCriterion("photo <=", value, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoLike(String value) {
+            addCriterion("photo like", value, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoNotLike(String value) {
+            addCriterion("photo not like", value, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIn(List<String> values) {
+            addCriterion("photo in", values, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoNotIn(List<String> values) {
+            addCriterion("photo not in", values, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoBetween(String value1, String value2) {
+            addCriterion("photo between", value1, value2, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoNotBetween(String value1, String value2) {
+            addCriterion("photo not between", value1, value2, "photo");
             return (Criteria) this;
         }
     }

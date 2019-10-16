@@ -1,7 +1,5 @@
 package com.jxnu.demo.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jxnu.demo.bean.Contentuser;
 import com.jxnu.demo.bean.MassInfo;
 import com.jxnu.demo.bean.UserInfo;
@@ -11,13 +9,22 @@ import com.jxnu.demo.service.ContentUseService;
 import com.jxnu.demo.service.MassService;
 import com.jxnu.demo.service.MassUserService;
 import com.jxnu.demo.service.UserService;
+import com.jxnu.demo.tool.FtpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/MassController")
@@ -84,7 +91,7 @@ public class MassController {
 
         try {
             massService.update(massInfo);
-            massService.updateMassLeader(massInfo.getId(),massInfo.getLeader_userId());
+            massService.updateMassLeader(massInfo.getId(),massInfo.getLeaderUserid());
             return ServerResponse.CreateServerResponse(ReturnCode.UPDATE_SUCCESS.getCode(),ReturnCode.UPDATE_SUCCESS.getMsg());
         }catch (Exception e){
             e.printStackTrace();
@@ -139,12 +146,33 @@ public class MassController {
 
         try {
             list_user=massService.selectMassUser(mass_id);
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),list_user);
         } catch (Exception e) {
             e.printStackTrace();
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg());
         }
-        return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),list_user);
+    }
+
+    /**
+     * 图片上传
+     * @param file
+     * @return
+     */
+    @RequestMapping("/upload")
+    @ResponseBody
+    public ServerResponse upload(InputStream file){
+        try {
+            //FileInputStream in=new FileInputStream(file.getOriginalFilename());
+            //FileInputStream in=new FileInputStream(new File("C:\\Users\\Administrator\\Desktop\\asd.png"));
+            boolean flag = FtpUtil.uploadFile("47.100.242.234", 21, "ftpuser", "542344733", "/home/ftpuser/images","/", "zzz.png", file);
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),flag);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg());
+        }
 
     }
+
+
 
 }

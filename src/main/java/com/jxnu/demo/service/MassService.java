@@ -3,7 +3,9 @@ package com.jxnu.demo.service;
 import com.jxnu.demo.bean.MassInfo;
 import com.jxnu.demo.bean.UserInfo;
 import com.jxnu.demo.dao.MassInfoMapper;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface MassService {
@@ -21,4 +23,5 @@ public interface MassService {
     int updateMassLeader(Integer id,Integer user_id);
 
     List<UserInfo> selectMassUser(Integer id);
-}
+
+    }

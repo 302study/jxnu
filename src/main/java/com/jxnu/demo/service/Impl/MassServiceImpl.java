@@ -6,8 +6,6 @@ import com.jxnu.demo.dao.MassInfoMapper;
 import com.jxnu.demo.service.MassService;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-
-
 import java.util.List;
 
 
@@ -52,6 +50,8 @@ public class MassServiceImpl implements MassService {
     public List<UserInfo> selectMassUser(Integer id) {
         return bac.selectMassUser(id);
     }
+
+
 
 
 }
