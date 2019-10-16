@@ -196,9 +196,12 @@
       <if test="leader_userId != null">
         #{leader_userId,jdbcType=INTEGER},
       </if>
-      <if test="leader != null">
-        #{leader,jdbcType=VARCHAR},
-      </if>
+      (
+      SELECT
+      name FROM user_info
+      WHERE
+      id = #{leader_userId,jdbcType=INTEGER}
+      ),
       <if test="priority != null">
         #{priority,jdbcType=INTEGER},
       </if>

@@ -67,7 +67,9 @@ public class MassController {
     public ServerResponse insertMass(MassInfo massInfo) {
 
         try {
+            massInfo.setState(2); //新增的社团状态默认为2，即未上架
             massService.add(massInfo);
+
         } catch (Exception e) {
             e.printStackTrace();
             return ServerResponse.CreateServerResponse(ReturnCode.INSERT_ERROR.getCode(),ReturnCode.INSERT_ERROR.getMsg());
