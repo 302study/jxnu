@@ -163,9 +163,10 @@ public class MassController {
     public ServerResponse upload(MultipartFile file,String id){
         try {
             String uuid=UUID.randomUUID().toString()+".jpg";
+            String path="http://47.100.242.234/images/";
             boolean flag = new FtpUtil().uploadFile("/home/ftpuser/images",uuid,file.getInputStream());
 
-            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),flag);
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),path+uuid);
         } catch (Exception e) {
             e.printStackTrace();
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg());
