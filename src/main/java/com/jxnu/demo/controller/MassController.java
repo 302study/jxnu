@@ -160,11 +160,11 @@ public class MassController {
      */
     @RequestMapping("/upload")
     @ResponseBody
-    public ServerResponse upload(InputStream file){
+    public ServerResponse upload(MultipartFile file,String id){
         try {
-            //FileInputStream in=new FileInputStream(file.getOriginalFilename());
-            //FileInputStream in=new FileInputStream(new File("C:\\Users\\Administrator\\Desktop\\asd.png"));
-            boolean flag = FtpUtil.uploadFile("47.100.242.234", 21, "ftpuser", "542344733", "/home/ftpuser/images","/", "zzz.png", file);
+            String uuid=UUID.randomUUID().toString()+".jpg";
+            boolean flag = new FtpUtil().uploadFile("/home/ftpuser/images",uuid,file.getInputStream());
+
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),flag);
         } catch (Exception e) {
             e.printStackTrace();
