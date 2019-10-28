@@ -95,4 +95,6 @@ public interface ActivityMapper {
     int updateByPrimaryKey(Activity record);
 
     List<Activity> selectAll();
+
+    List<Activity> selectByName(String name);
 }

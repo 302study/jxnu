@@ -4,6 +4,7 @@ import com.jxnu.demo.bean.MassInfo;
 import com.jxnu.demo.bean.UserInfo;
 import com.jxnu.demo.dao.MassInfoMapper;
 import com.jxnu.demo.service.MassService;
+import org.checkerframework.checker.units.qual.Mass;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
@@ -17,6 +18,9 @@ public class MassServiceImpl implements MassService {
     @Override
     public List<MassInfo> selectMass(){
         List<MassInfo> list=bac.SelectMass();
+        for(MassInfo i:list){
+            i.createPhotoArray();
+        }
         return list;
     }
 
@@ -38,6 +42,7 @@ public class MassServiceImpl implements MassService {
     @Override
     public MassInfo selectByPrimaryKey(Integer id){
         MassInfo massInfo=bac.selectByPrimaryKey(id);
+        massInfo.createPhotoArray();
         return massInfo;
     }
 
@@ -51,7 +56,15 @@ public class MassServiceImpl implements MassService {
         return bac.selectMassUser(id);
     }
 
-
+    @Override
+    public List<MassInfo> selectByName(String name) {
+        name="%"+name+"%";
+        List<MassInfo> list=bac.selectByName(name);
+        for(MassInfo i:list){
+            i.createPhotoArray();
+        }
+        return list;
+    }
 
 
 }

@@ -120,7 +120,7 @@ public class MassController {
     }
 
     /**
-     * select User By mass_id
+     * 根据社团id查找团长信息
      * @param mass_id
      * @return
      */
@@ -160,7 +160,7 @@ public class MassController {
      */
     @RequestMapping("/upload")
     @ResponseBody
-    public ServerResponse upload(MultipartFile file,String id){
+    public ServerResponse upload(MultipartFile file){
         try {
             String uuid=UUID.randomUUID().toString()+".jpg";
             String path="47.100.242.234/images/";
@@ -172,6 +172,23 @@ public class MassController {
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg());
         }
 
+    }
+
+    /**
+     * 根据社团名称查找社团
+     * @param name
+     * @return
+     */
+    @RequestMapping("/selectByName")
+    @ResponseBody
+    public ServerResponse selectByName(String name){
+        try{
+            List<MassInfo> massList=massService.selectByName(name);
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),massList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
+        }
     }
 
 

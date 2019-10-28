@@ -16,6 +16,9 @@ public class MassUserServiceImpl implements MassUserService {
 
     @Override
     public List<Integer> selectMassUser(int id) throws Exception{
-        return bac.selectUserIdByMassId(id);
+        List<Integer> rec=bac.selectUserIdByMassId(id);
+        if(rec.size()==0)
+            return null;
+        else return rec;
     }
 }

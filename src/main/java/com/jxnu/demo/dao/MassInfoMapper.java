@@ -102,4 +102,6 @@ public interface MassInfoMapper {
 
     List<UserInfo> selectMassUser(Integer id);
 
+    List<MassInfo> selectByName(String name);
+
 }
