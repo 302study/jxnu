@@ -37,5 +37,9 @@ public class ActivityServiceImpl implements ActivityService {
         return bac.deleteByPrimaryKey(id);
     }
 
+    public List<Activity> selectByName(String name) {
+        name="%"+name+"%";
+        return bac.selectByName(name);
+    }
 
 }

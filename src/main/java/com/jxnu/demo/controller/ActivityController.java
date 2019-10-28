@@ -68,4 +68,21 @@ public class ActivityController {
         }
     }
 
+    /**
+     * 根据活动名称查找活动
+     * @param name
+     * @return
+     */
+    @RequestMapping("/selectByName")
+    @ResponseBody
+    public ServerResponse selectByName(String name){
+        try{
+            List<Activity> activityList=null;
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),activityList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
+        }
+    }
+
 }

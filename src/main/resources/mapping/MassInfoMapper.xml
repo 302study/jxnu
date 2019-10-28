@@ -357,6 +357,13 @@
     where m.user_id=u.id
     and m.mass_id=#{user_id,jdbcType=INTEGER}
   </select>
+  <select id="selectByName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from mass_info
+    where name like #{name}
+  </select>
+
 
 
 </mapper>

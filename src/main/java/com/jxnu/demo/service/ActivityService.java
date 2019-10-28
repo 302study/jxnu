@@ -12,4 +12,5 @@ public interface ActivityService {
 
     int deleteById(Integer id);
 
+    List<Activity> selectByName(String name);
 }
