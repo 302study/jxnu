@@ -330,7 +330,7 @@ public class MassInfo implements Serializable {
     }
 
     public void createPhotoArray(){
-        if(this.photo != null)
+        if(this.photo != null && !this.photo.equals(""))
             this.photoArray=this.photo.split(",");
     }
 }
