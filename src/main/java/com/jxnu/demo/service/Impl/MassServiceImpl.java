@@ -24,10 +24,17 @@ public class MassServiceImpl implements MassService {
         return list;
     }
 
+    /**
+     * 将massinfo添加进社团表中
+     * @param massinfo
+     * @return
+     */
     @Override
     public int add(MassInfo massinfo){
         return bac.insertSelective(massinfo);
     }
+
+
 
     @Override
     public int del(MassInfo massinfo){

@@ -96,4 +96,5 @@ public interface MassUserMapper {
 
     List<Integer> selectUserIdByMassId(Integer mass_id);
 
+    int massDelUser(Integer massId);
 }

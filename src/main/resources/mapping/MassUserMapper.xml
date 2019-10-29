@@ -261,4 +261,10 @@
     where mass_id = #{mass_id,jdbcType=INTEGER} and state != 1
   </select>
 
+  <update id="massDelUser" parameterType="java.lang.Integer">
+    update mass_user
+    set state = 1
+    where mass_id = #{massId,jdbcType=INTEGER}
+  </update>
+
 </mapper>

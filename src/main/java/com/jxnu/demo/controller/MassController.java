@@ -32,6 +32,11 @@ public class MassController {
     @Autowired
     UserService userService;
 
+
+    /**
+     * 查找所有社团
+     * @return
+     */
     @RequestMapping("/selectMass")
     @ResponseBody
     public ServerResponse selectMass()  {
@@ -72,27 +77,10 @@ public class MassController {
     }
 
     /**
-     * 根据社团id查找团长信息
+     * 查找社团所有成员
      * @param mass_id
      * @return
      */
-    @RequestMapping("/selectUser")
-    @ResponseBody
-    public ServerResponse selectUser(Integer mass_id) {
-        UserInfo list_user;
-
-        try {
-            //查找团长的user_id
-            Integer user_id=massService.selectByPrimaryKey(mass_id).getLeaderUserid();
-            //根据user_id查找user信息
-            list_user=userService.selectById(user_id);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg());
-        }
-        return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),list_user);
-    }
-
     @RequestMapping("/selectMassUser")
     @ResponseBody
     public ServerResponse selectMassUser(Integer mass_id) {
@@ -100,6 +88,23 @@ public class MassController {
 
         try {
             list_user=massService.selectMassUser(mass_id);
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),list_user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg());
+        }
+    }
+
+    /**
+     * 查找所有用户
+     * @return
+     */
+    @RequestMapping("/selectUser")
+    @ResponseBody
+    public ServerResponse selectUser(){
+        List<UserInfo> list_user;
+        try {
+            list_user=userService.selectUser();
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),list_user);
         } catch (Exception e) {
             e.printStackTrace();
@@ -115,14 +120,21 @@ public class MassController {
         return ServerResponse.CreateServerResponse(ReturnCode.ERROR.getCode(),ReturnCode.ERROR.getMsg());
     }
 
+    /**
+     * 新增社团
+     * 新增社团与成员关联信息
+     * @param massInfo
+     * @return
+     */
     @RequestMapping("/insert")
     @ResponseBody
     public ServerResponse insertMass(MassInfo massInfo) {
 
         try {
+            //将新社团添加进社团表
             massInfo.setState(2); //新增的社团状态默认为2，即未上架
             massService.add(massInfo);
-
+            massUserService.add(massInfo.getId(),massInfo.getLeaderUserid(),0);
         } catch (Exception e) {
             e.printStackTrace();
             return ServerResponse.CreateServerResponse(ReturnCode.INSERT_ERROR.getCode(),ReturnCode.INSERT_ERROR.getMsg());
@@ -131,6 +143,11 @@ public class MassController {
         return ServerResponse.CreateServerResponse(ReturnCode.INSERT_SUCCESS.getCode(),ReturnCode.INSERT_SUCCESS.getMsg());
     }
 
+    /**
+     * 图片上传
+     * @param massInfo
+     * @return
+     */
     @RequestMapping("/update")
     @ResponseBody
     public ServerResponse updateMass(MassInfo massInfo) {
@@ -152,7 +169,9 @@ public class MassController {
     }
 
     /**
-     * 删除，
+     * 删除社团
+     * 删除社团成员表中该社团的信息
+     * 注：state=1
      * @param massInfo id
      * @return
      * @throws Exception
@@ -163,7 +182,10 @@ public class MassController {
 
         try {
             massInfo.setState(1);
+            //设置社团表里该社团状态为删除
             massService.update(massInfo);
+            //设置社团用户表里，该社团与用户关系状态为已删
+            massUserService.massDelUser(massInfo.getId());
         } catch (Exception e) {
             e.printStackTrace();
             return ServerResponse.CreateServerResponse(ReturnCode.DELETE_ERROR.getCode(),ReturnCode.DELETE_ERROR.getMsg());

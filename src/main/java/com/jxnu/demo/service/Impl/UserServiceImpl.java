@@ -20,6 +20,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserInfo> selectUser() {
+        return bac.selectUser();
+    }
+
+    @Override
     public UserInfo selectById(Integer id) {
         return bac.selectByPrimaryKey(id);
     }

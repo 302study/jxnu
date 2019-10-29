@@ -8,5 +8,9 @@ public interface UserService {
 
     List<UserInfo> selectByListId(List<Integer> listId) throws Exception;
 
+    List<UserInfo> selectUser();
+
     UserInfo selectById(Integer id);
+
+
 }

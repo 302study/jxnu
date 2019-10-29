@@ -95,4 +95,6 @@ public interface UserInfoMapper {
     int updateByPrimaryKey(UserInfo record);
 
     List<UserInfo> selectByListId(@Param("listId") List<Integer> listId);
+
+    List<UserInfo> selectUser();
 }
