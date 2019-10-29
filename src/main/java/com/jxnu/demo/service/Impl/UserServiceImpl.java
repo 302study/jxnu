@@ -18,4 +18,9 @@ public class UserServiceImpl implements UserService {
     public List<UserInfo> selectByListId(List<Integer> listId) throws Exception{
         return bac.selectByListId(listId);
     }
+
+    @Override
+    public UserInfo selectById(Integer id) {
+        return bac.selectByPrimaryKey(id);
+    }
 }

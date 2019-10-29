@@ -77,7 +77,7 @@ public class ActivityController {
     @ResponseBody
     public ServerResponse selectByName(String name){
         try{
-            List<Activity> activityList=null;
+            List<Activity> activityList=activityService.selectByName(name);
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),activityList);
         } catch (Exception e) {
             e.printStackTrace();

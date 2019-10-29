@@ -316,4 +316,11 @@
       state = #{state,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectTopic" parameterType="com.jxnu.demo.bean.Topic">
+    select
+    <include refid="Base_Column_List" />
+    from topic
+    order by priority
+  </select>
 </mapper>

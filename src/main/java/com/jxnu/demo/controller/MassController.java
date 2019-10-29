@@ -14,15 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.UUID;
 
@@ -58,6 +51,59 @@ public class MassController {
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),null);
         }else{
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),massInfo);
+        }
+    }
+
+    /**
+     * 根据社团名称查找社团
+     * @param name
+     * @return
+     */
+    @RequestMapping("/selectByName")
+    @ResponseBody
+    public ServerResponse selectByName(String name){
+        try{
+            List<MassInfo> massList=massService.selectByName(name);
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),massList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
+        }
+    }
+
+    /**
+     * 根据社团id查找团长信息
+     * @param mass_id
+     * @return
+     */
+    @RequestMapping("/selectUser")
+    @ResponseBody
+    public ServerResponse selectUser(Integer mass_id) {
+        UserInfo list_user;
+
+        try {
+            //查找团长的user_id
+            Integer user_id=massService.selectByPrimaryKey(mass_id).getLeaderUserid();
+            //根据user_id查找user信息
+            list_user=userService.selectById(user_id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg());
+        }
+        return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),list_user);
+    }
+
+    @RequestMapping("/selectMassUser")
+    @ResponseBody
+    public ServerResponse selectMassUser(Integer mass_id) {
+        List<UserInfo> list_user;
+
+        try {
+            list_user=massService.selectMassUser(mass_id);
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),list_user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg());
         }
     }
 
@@ -120,40 +166,6 @@ public class MassController {
     }
 
     /**
-     * 根据社团id查找团长信息
-     * @param mass_id
-     * @return
-     */
-    @RequestMapping("/selectUser")
-    @ResponseBody
-    public ServerResponse selectUser(Integer mass_id) {
-        List<UserInfo> list_user;
-
-        try {
-            List<Integer> user_id=massUserService.selectMassUser(mass_id);
-            list_user=userService.selectByListId(user_id);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg());
-        }
-        return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),list_user);
-    }
-
-    @RequestMapping("/selectMassUser")
-    @ResponseBody
-    public ServerResponse selectMassUser(Integer mass_id) {
-        List<UserInfo> list_user;
-
-        try {
-            list_user=massService.selectMassUser(mass_id);
-            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),list_user);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg());
-        }
-    }
-
-    /**
      * 图片上传
      * @param file
      * @return
@@ -173,24 +185,5 @@ public class MassController {
         }
 
     }
-
-    /**
-     * 根据社团名称查找社团
-     * @param name
-     * @return
-     */
-    @RequestMapping("/selectByName")
-    @ResponseBody
-    public ServerResponse selectByName(String name){
-        try{
-            List<MassInfo> massList=massService.selectByName(name);
-            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),massList);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
-        }
-    }
-
-
 
 }

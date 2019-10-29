@@ -7,4 +7,6 @@ import java.util.List;
 public interface UserService {
 
     List<UserInfo> selectByListId(List<Integer> listId) throws Exception;
+
+    UserInfo selectById(Integer id);
 }

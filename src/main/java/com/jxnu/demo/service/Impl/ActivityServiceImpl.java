@@ -34,7 +34,10 @@ public class ActivityServiceImpl implements ActivityService {
 
     @Override
     public int deleteById(Integer id) {
-        return bac.deleteByPrimaryKey(id);
+        Activity activity=new Activity();
+        activity.setId(id);
+        activity.setState(1);
+        return bac.updateByPrimaryKeySelective(activity);
     }
 
     public List<Activity> selectByName(String name) {
