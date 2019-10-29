@@ -131,6 +131,13 @@ public class MassController {
     public ServerResponse insertMass(MassInfo massInfo) {
 
         try {
+            String photo=massInfo.getPhoto();
+            if(photo!=null) {
+                photo = photo.replace("[", "");
+                photo = photo.replace("]", "");
+                photo = photo.replace("\"", "");
+                massInfo.setPhoto(photo);
+            }
             //将新社团添加进社团表
             massInfo.setState(2); //新增的社团状态默认为2，即未上架
             massService.add(massInfo);
@@ -153,12 +160,13 @@ public class MassController {
     public ServerResponse updateMass(MassInfo massInfo) {
 
         try {
-
             String photo=massInfo.getPhoto();
-            photo=photo.replace("[","");
-            photo=photo.replace("]","");
-            photo=photo.replace("\"","");
-            massInfo.setPhoto(photo);
+            if(photo!=null) {
+                photo = photo.replace("[", "");
+                photo = photo.replace("]", "");
+                photo = photo.replace("\"", "");
+                massInfo.setPhoto(photo);
+            }
             massService.update(massInfo);
             massService.updateMassLeader(massInfo.getId(),massInfo.getLeaderUserid());
             return ServerResponse.CreateServerResponse(ReturnCode.UPDATE_SUCCESS.getCode(),ReturnCode.UPDATE_SUCCESS.getMsg());

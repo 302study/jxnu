@@ -98,7 +98,7 @@ public interface MassInfoMapper {
 
     List<MassInfo> SelectMass();
 
-    int updateMassLeader(Integer id,Integer user_id);
+    int updateMassLeader(@Param("id") Integer id,@Param("user_id") Integer user_id);
 
     List<UserInfo> selectMassUser(Integer id);
 
