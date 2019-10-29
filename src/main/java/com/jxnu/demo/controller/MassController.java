@@ -141,7 +141,7 @@ public class MassController {
             //将新社团添加进社团表
             massInfo.setState(2); //新增的社团状态默认为2，即未上架
             massService.add(massInfo);
-            massUserService.add(massInfo.getId(),massInfo.getLeaderUserid(),0);
+            massUserService.add(massInfo.getLeaderUserid(),0);
         } catch (Exception e) {
             e.printStackTrace();
             return ServerResponse.CreateServerResponse(ReturnCode.INSERT_ERROR.getCode(),ReturnCode.INSERT_ERROR.getMsg());

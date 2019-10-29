@@ -24,16 +24,14 @@ public class MassUserServiceImpl implements MassUserService {
 
     /**
      * 添加新的社团用户关联数据
-     * @param massId
      * @param userId
      * @param state
      * @return
      */
     @Override
-    public int add(Integer massId, Integer userId, Integer state) {
+    public int add(Integer userId, Integer state) {
         MassUser massUser=new MassUser();
         massUser.setId(null);
-        massUser.setMassId(massId);
         massUser.setUserId(userId);
         massUser.setState(state);
         return bac.insertSelective(massUser);

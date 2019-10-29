@@ -148,11 +148,9 @@
     -->
     insert into mass_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
+        mass_id,
       <if test="id != null">
         id,
-      </if>
-      <if test="massId != null">
-        mass_id,
       </if>
       <if test="userId != null">
         user_id,
@@ -162,11 +160,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+        (select LAST_INSERT_ID() ),
       <if test="id != null">
         #{id,jdbcType=INTEGER},
-      </if>
-      <if test="massId != null">
-        #{massId,jdbcType=INTEGER},
       </if>
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
