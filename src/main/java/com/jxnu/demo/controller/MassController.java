@@ -25,6 +25,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 @Controller
 @RequestMapping("/MassController")
@@ -90,6 +91,8 @@ public class MassController {
     public ServerResponse updateMass(MassInfo massInfo) {
 
         try {
+            String photo=massInfo.getPhoto();
+
             massService.update(massInfo);
             massService.updateMassLeader(massInfo.getId(),massInfo.getLeaderUserid());
             return ServerResponse.CreateServerResponse(ReturnCode.UPDATE_SUCCESS.getCode(),ReturnCode.UPDATE_SUCCESS.getMsg());
@@ -163,7 +166,7 @@ public class MassController {
     public ServerResponse upload(MultipartFile file){
         try {
             String uuid=UUID.randomUUID().toString()+".jpg";
-            String path="47.100.242.234/images/";
+            String path="http://47.100.242.234/images/";
             boolean flag = new FtpUtil().uploadFile("/home/ftpuser/images",uuid,file.getInputStream());
 
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),path+uuid);
@@ -191,6 +194,11 @@ public class MassController {
         }
     }
 
-
+    public static void main(String[] args) {
+        String s="[\"http://47.100.242.234/images/cb067c73-488b-42bc-b77f-5ef99280e556.jpg\",\"http://47.100.242.234/images/241f13f1-0541-407c-add0-8d288277ee3c.jpg\"]";
+        s = s.replace('[','\u0000');
+        s = s.replace(']','\u0000');
+        System.out.println(s.replaceAll("\"",""));
+    }
 
 }
