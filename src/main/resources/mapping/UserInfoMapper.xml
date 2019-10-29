@@ -114,7 +114,6 @@
     <include refid="Base_Column_List" />
     from user_info
     where id = #{id,jdbcType=INTEGER} and state != 1
-    order by priority
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--

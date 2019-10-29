@@ -136,6 +136,12 @@ public class MassController {
     public ServerResponse updateMass(MassInfo massInfo) {
 
         try {
+
+            String photo=massInfo.getPhoto();
+            photo=photo.replace("[","");
+            photo=photo.replace("]","");
+            photo=photo.replace("\"","");
+            massInfo.setPhoto(photo);
             massService.update(massInfo);
             massService.updateMassLeader(massInfo.getId(),massInfo.getLeaderUserid());
             return ServerResponse.CreateServerResponse(ReturnCode.UPDATE_SUCCESS.getCode(),ReturnCode.UPDATE_SUCCESS.getMsg());
@@ -175,7 +181,7 @@ public class MassController {
     public ServerResponse upload(MultipartFile file){
         try {
             String uuid=UUID.randomUUID().toString()+".jpg";
-            String path="47.100.242.234/images/";
+            String path="http://47.100.242.234/images/";
             boolean flag = new FtpUtil().uploadFile("/home/ftpuser/images",uuid,file.getInputStream());
 
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),path+uuid);
