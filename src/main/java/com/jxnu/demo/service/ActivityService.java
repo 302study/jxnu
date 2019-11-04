@@ -14,6 +14,8 @@ public interface ActivityService {
 
     List<Activity> selectByName(String name);
 
+    Activity selectByPrimaryKey(Integer id);
+
     int updateByPrimaryKeySelective(Activity activity);
 
     int peopleAddOne(Integer id);

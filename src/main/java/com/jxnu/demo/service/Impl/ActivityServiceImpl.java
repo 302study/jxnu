@@ -47,6 +47,11 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
+    public Activity selectByPrimaryKey(Integer id) {
+        return bac.selectByPrimaryKey(id);
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(Activity activity) {
         return bac.updateByPrimaryKeySelective(activity);
     }

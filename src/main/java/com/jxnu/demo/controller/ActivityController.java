@@ -95,6 +95,22 @@ public class ActivityController {
     }
 
     /**
+     * @param id
+     * @return
+     */
+    @RequestMapping("/selectById")
+    @ResponseBody
+    public ServerResponse selectById(Integer id){
+        try{
+            Activity activity=activityService.selectByPrimaryKey(id);
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),activity);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
+        }
+    }
+
+    /**
      * 更新活动
      * @param activity
      * @return
@@ -137,8 +153,8 @@ public class ActivityController {
             e.printStackTrace();
             return ServerResponse.CreateServerResponse(ReturnCode.UPDATE_ERROR.getCode(),ReturnCode.UPDATE_ERROR.getMsg());
         }
-
     }
+
 
 
 }
