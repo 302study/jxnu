@@ -97,4 +97,6 @@ public interface ActivityMapper {
     List<Activity> selectAll();
 
     List<Activity> selectByName(String name);
+
+    int peopleAddOne(Integer id);
 }

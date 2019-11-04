@@ -13,4 +13,8 @@ public interface ActivityService {
     int deleteById(Integer id);
 
     List<Activity> selectByName(String name);
+
+    int updateByPrimaryKeySelective(Activity activity);
+
+    int peopleAddOne(Integer id);
 }

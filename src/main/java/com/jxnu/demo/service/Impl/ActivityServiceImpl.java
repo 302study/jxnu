@@ -45,4 +45,17 @@ public class ActivityServiceImpl implements ActivityService {
         return bac.selectByName(name);
     }
 
+    @Override
+    public int updateByPrimaryKeySelective(Activity activity) {
+        return bac.updateByPrimaryKeySelective(activity);
+    }
+
+    @Override
+    public int peopleAddOne(Integer id) {
+        Activity activity=new Activity();
+        activity.setId(id);
+        return bac.peopleAddOne(id);
+    }
+
+
 }

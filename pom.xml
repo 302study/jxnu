@@ -94,6 +94,12 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
         </dependency>
+        <!-- 分页插件 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.3</version>
+        </dependency>
 
     </dependencies>
 
@@ -151,7 +157,7 @@
                 <configuration>
                     <fork>true</fork>
                     <executable>
-                        C:\Program Files\Java\jdk1.8.0_211\bin\javac.exe
+                        C:\Program Files\Java\jdk1.8.0_231\bin\javac.exe
                     </executable>
                 </configuration>
             </plugin>

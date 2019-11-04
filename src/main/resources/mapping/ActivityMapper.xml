@@ -345,4 +345,11 @@
     from activity
     where name like #{name,jdbcType=VARCHAR}
   </select>
+
+  <update id="peopleAddOne" parameterType="java.lang.Integer">
+    update activity
+    set participants_number=participants_number+1
+    where  id=#{id,jdbcType=INTEGER}
+  </update>
+
 </mapper>

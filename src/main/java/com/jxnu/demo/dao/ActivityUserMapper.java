@@ -93,4 +93,6 @@ public interface ActivityUserMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(ActivityUser record);
+
+    int delByActivityId(Integer ActivityId);
 }
