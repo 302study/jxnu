@@ -56,7 +56,7 @@ public class Activity implements Serializable {
      *
      * @mbg.generated
      */
-    private Date startDate;
+    private String startDate;
 
     /**
      *
@@ -65,7 +65,7 @@ public class Activity implements Serializable {
      *
      * @mbg.generated
      */
-    private Date endDate;
+    private String endDate;
 
     /**
      *
@@ -182,7 +182,7 @@ public class Activity implements Serializable {
      *
      * @mbg.generated
      */
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
@@ -194,7 +194,7 @@ public class Activity implements Serializable {
      *
      * @mbg.generated
      */
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
@@ -206,7 +206,7 @@ public class Activity implements Serializable {
      *
      * @mbg.generated
      */
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
@@ -218,7 +218,7 @@ public class Activity implements Serializable {
      *
      * @mbg.generated
      */
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
