@@ -301,4 +301,9 @@ public class Activity implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void cutDate(){
+        this.startDate=startDate.substring(0,10);
+        this.endDate=endDate.substring(0,10);
+    }
 }

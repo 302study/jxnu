@@ -12,5 +12,9 @@ public interface UserService {
 
     UserInfo selectById(Integer id);
 
+    int deleteById(Integer id);
 
+    int insertSelective(UserInfo userInfo);
+
+    int updateSelective(UserInfo userInfo);
 }
