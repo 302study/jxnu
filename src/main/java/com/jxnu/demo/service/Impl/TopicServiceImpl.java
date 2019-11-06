@@ -20,6 +20,11 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
+    public Topic selectById(Integer id) {
+        return bac.selectByPrimaryKey(id);
+    }
+
+    @Override
     public int deleteById(Integer id) {
         Topic topic=new Topic();
         topic.setId(id);
@@ -28,7 +33,12 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public int insert(Topic topic) {
-        return 0;
+    public int insertSelective(Topic topic) {
+        return bac.insertSelective(topic);
+    }
+
+    @Override
+    public int updateSelective(Topic topic) {
+        return bac.updateByPrimaryKeySelective(topic);
     }
 }

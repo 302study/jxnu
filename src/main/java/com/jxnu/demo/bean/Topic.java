@@ -63,7 +63,7 @@ public class Topic implements Serializable {
      *
      * @mbg.generated
      */
-    private Date date;
+    private String date;
 
     /**
      *
@@ -219,7 +219,7 @@ public class Topic implements Serializable {
      *
      * @mbg.generated
      */
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -231,7 +231,7 @@ public class Topic implements Serializable {
      *
      * @mbg.generated
      */
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

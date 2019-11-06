@@ -317,7 +317,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectTopic" parameterType="com.jxnu.demo.bean.Topic">
+  <select id="selectTopic" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from topic
