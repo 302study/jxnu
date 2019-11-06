@@ -53,6 +53,9 @@ public class ActivityController {
     public ServerResponse insert(Activity activity){
 
         try{
+            //取日期前十位（2019-01-01）
+            activity.cutDate();
+            //插入新的活动
             activityService.insertSelective(activity);
             return ServerResponse.CreateServerResponse(ReturnCode.INSERT_SUCCESS.getCode(),ReturnCode.INSERT_SUCCESS.getMsg());
         } catch (Exception e) {
@@ -119,6 +122,9 @@ public class ActivityController {
     @ResponseBody
     public  ServerResponse updateByPrimaryKeySelective(Activity activity){
         try{
+            //取日期前十位（2019-01-01）
+            activity.cutDate();
+            //更新
             activityService.updateByPrimaryKeySelective(activity);
             return ServerResponse.CreateServerResponse(ReturnCode.UPDATE_SUCCESS.getCode(),ReturnCode.UPDATE_SUCCESS.getMsg());
         } catch (Exception e) {
