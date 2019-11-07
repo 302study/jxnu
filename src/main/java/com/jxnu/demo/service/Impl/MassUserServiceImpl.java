@@ -23,7 +23,7 @@ public class MassUserServiceImpl implements MassUserService {
     }
 
     /**
-     * 添加新的社团用户关联数据
+     * 添加新的社团用户关联数据(社团id为最新插入的社团id，无需填写)
      * @param userId
      * @param state
      * @return
@@ -34,7 +34,7 @@ public class MassUserServiceImpl implements MassUserService {
         massUser.setId(null);
         massUser.setUserId(userId);
         massUser.setState(state);
-        return bac.insertSelective(massUser);
+        return bac.insertSelective2(massUser);
     }
 
     /**
@@ -47,5 +47,14 @@ public class MassUserServiceImpl implements MassUserService {
         if(massId == 0)
             return 0;
         return bac.massDelUser(massId);
+    }
+
+    @Override
+    public int add(Integer massId, Integer userId, Integer state) {
+        MassUser massUser=new MassUser();
+        massUser.setMassId(massId);
+        massUser.setUserId(userId);
+        massUser.setState(state);
+        return bac.insertSelective(massUser);
     }
 }

@@ -6,8 +6,9 @@ public interface MassUserService {
 
     List<Integer> selectMassUser(Integer id) throws Exception;
 
-    int add(Integer UserId,Integer state);
+    int add(Integer userId,Integer state);
 
     int massDelUser(Integer massId);
 
+    int add(Integer massId,Integer userId,Integer state);
 }

@@ -219,7 +219,30 @@ public class MassController {
             e.printStackTrace();
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg());
         }
+    }
 
+    /**
+     * 用户加入社团
+     * @param userId
+     * @param massId
+     * @return
+     */
+    @RequestMapping("/joinMass")
+    @ResponseBody
+    public ServerResponse joinMass(int userId,int massId){
+        try {
+            //该社团人数+1
+            MassInfo massInfo=new MassInfo();
+            massInfo.setId(massId);
+            massService.joinMass(massId);
+            //社团用户表添加该用户信息
+            massUserService.add(massId,userId,0);
+
+            return ServerResponse.CreateServerResponse(ReturnCode.INSERT_SUCCESS.getCode(),ReturnCode.INSERT_SUCCESS.getMsg());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.INSERT_ERROR.getCode(),ReturnCode.INSERT_SUCCESS.getMsg());
+        }
     }
 
 }
