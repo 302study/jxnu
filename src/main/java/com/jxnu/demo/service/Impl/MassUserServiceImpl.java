@@ -29,7 +29,7 @@ public class MassUserServiceImpl implements MassUserService {
      * @return
      */
     @Override
-    public int add(Integer userId, Integer state) {
+    public int add(String userId, Integer state) {
         MassUser massUser=new MassUser();
         massUser.setId(null);
         massUser.setUserId(userId);
@@ -50,7 +50,7 @@ public class MassUserServiceImpl implements MassUserService {
     }
 
     @Override
-    public int add(Integer massId, Integer userId, Integer state) {
+    public int add(Integer massId, String userId, Integer state) {
         MassUser massUser=new MassUser();
         massUser.setMassId(massId);
         massUser.setUserId(userId);

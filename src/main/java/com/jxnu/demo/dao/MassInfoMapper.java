@@ -98,11 +98,13 @@ public interface MassInfoMapper {
 
     List<MassInfo> SelectMass();
 
-    int updateMassLeader(@Param("id") Integer id,@Param("user_id") Integer user_id);
+    int updateMassLeader(@Param("id") Integer id,@Param("user_id") String user_id);
 
     List<UserInfo> selectMassUser(Integer id);
 
     List<MassInfo> selectByName(String name);
 
     int joinMass(Integer id);
+
+    List<MassInfo> selectByUserId(String userId);
 }

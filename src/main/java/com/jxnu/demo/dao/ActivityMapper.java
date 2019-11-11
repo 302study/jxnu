@@ -101,4 +101,6 @@ public interface ActivityMapper {
     List<Activity> selectById(Integer id);
 
     int peopleAddOne(Integer id);
+
+    List<Activity> selectByUserId(String userId);
 }
