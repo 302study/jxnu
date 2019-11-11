@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface UserService {
 
-    List<UserInfo> selectByListId(List<Integer> listId) throws Exception;
+    List<UserInfo> selectByListId(List<String> listId) throws Exception;
 
     List<UserInfo> selectUser();
 
-    UserInfo selectById(Integer id);
+    UserInfo selectById(String id);
 
-    int deleteById(Integer id);
+    int deleteById(String id);
 
     int insertSelective(UserInfo userInfo);
 

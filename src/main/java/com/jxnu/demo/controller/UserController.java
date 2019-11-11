@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@RequestMapping("/PersonalController")
+@RequestMapping("/UserController")
 @CrossOrigin(allowCredentials = "true")
-public class PersonalController {
+public class UserController {
 
     @Autowired
     UserService userService;
@@ -27,7 +27,7 @@ public class PersonalController {
      */
     @RequestMapping("/selectById")
     @ResponseBody
-    public ServerResponse selectById(int id){
+    public ServerResponse selectById(String id){
         try{
             UserInfo userInfo=userService.selectById(id);
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),userInfo);

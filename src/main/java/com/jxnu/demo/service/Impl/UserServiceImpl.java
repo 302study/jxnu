@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
      * @throws Exception
      */
     @Override
-    public List<UserInfo> selectByListId(List<Integer> listId) throws Exception{
+    public List<UserInfo> selectByListId(List<String> listId) throws Exception{
         return bac.selectByListId(listId);
     }
 
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public UserInfo selectById(Integer id) {
+    public UserInfo selectById(String id) {
         return bac.selectByPrimaryKey(id);
     }
 
@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public int deleteById(Integer id) {
+    public int deleteById(String id) {
         return 0;
     }
 

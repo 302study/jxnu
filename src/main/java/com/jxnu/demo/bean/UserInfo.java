@@ -17,7 +17,7 @@ public class UserInfo implements Serializable {
      *
      * @mbg.generated
      */
-    private Integer id;
+    private String id;
 
     /**
      *
@@ -89,7 +89,7 @@ public class UserInfo implements Serializable {
      *
      * @mbg.generated
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -101,7 +101,7 @@ public class UserInfo implements Serializable {
      *
      * @mbg.generated
      */
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
