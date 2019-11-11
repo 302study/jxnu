@@ -336,6 +336,7 @@
     select
     <include refid="Base_Column_List" />
     from activity
+    where state != 1
     order by priority
   </select>
 
