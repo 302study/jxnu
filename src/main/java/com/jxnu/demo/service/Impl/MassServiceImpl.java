@@ -73,5 +73,10 @@ public class MassServiceImpl implements MassService {
         return list;
     }
 
+    @Override
+    public int joinMass(Integer id) {
+        return bac.joinMass(id);
+    }
+
 
 }

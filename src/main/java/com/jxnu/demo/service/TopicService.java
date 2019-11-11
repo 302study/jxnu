@@ -8,8 +8,12 @@ public interface TopicService {
 
     List<Topic> selectTopic();
 
+    Topic selectById(Integer id);
+
     int deleteById(Integer id);
 
-    int insert(Topic topic);
+    int insertSelective(Topic topic);
+
+    int updateSelective(Topic topic);
 
 }

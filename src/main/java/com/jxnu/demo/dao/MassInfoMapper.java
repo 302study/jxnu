@@ -104,4 +104,5 @@ public interface MassInfoMapper {
 
     List<MassInfo> selectByName(String name);
 
+    int joinMass(Integer id);
 }

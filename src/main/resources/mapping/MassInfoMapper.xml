@@ -364,6 +364,11 @@
     where name like #{name}
   </select>
 
+  <update id="joinMass" parameterType="java.lang.Integer">
+    update mass_info mass
+    set number=number+1
+    where mass.id=#{id,jdbcType=INTEGER}
+  </update>
 
 
 </mapper>

@@ -21,4 +21,7 @@ public interface MassService {
     List<UserInfo> selectMassUser(Integer id);
 
     List<MassInfo> selectByName(String name);
+
+    int joinMass(Integer id);
+
     }
