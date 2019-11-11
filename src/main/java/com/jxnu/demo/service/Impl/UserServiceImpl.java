@@ -74,5 +74,10 @@ public class UserServiceImpl implements UserService {
         return bac.updateByPrimaryKeySelective(userInfo);
     }
 
+    @Override
+    public int merge(UserInfo userInfo) {
+        return bac.merge(userInfo);
+    }
+
 
 }

@@ -17,4 +17,6 @@ public interface UserService {
     int insertSelective(UserInfo userInfo);
 
     int updateSelective(UserInfo userInfo);
+
+    int merge(UserInfo userInfo);
 }
