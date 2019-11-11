@@ -303,7 +303,11 @@ public class Activity implements Serializable {
     }
 
     public void cutDate(){
-        this.startDate=startDate.substring(0,10);
-        this.endDate=endDate.substring(0,10);
+        if(this.startDate!=null){
+            this.startDate=startDate.substring(0,10);
+        }
+        if(this.endDate!=null){
+            this.endDate=endDate.substring(0,10);
+        }
     }
 }
