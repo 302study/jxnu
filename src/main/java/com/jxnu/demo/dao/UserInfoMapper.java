@@ -97,4 +97,6 @@ public interface UserInfoMapper {
     List<UserInfo> selectByListId(@Param("listId") List<Integer> listId);
 
     List<UserInfo> selectUser();
+
+    int merge(UserInfo userInfo);
 }

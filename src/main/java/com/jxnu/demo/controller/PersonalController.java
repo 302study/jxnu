@@ -90,5 +90,21 @@ public class PersonalController {
         return ServerResponse.CreateServerResponse(ReturnCode.INSERT_SUCCESS.getCode(),ReturnCode.INSERT_SUCCESS.getMsg());
     }
 
+    /**
+     * 用户登入
+     * 若该用户为新用户，则将新用户存入数据库
+     * 若薇老用户，则修改name为最新名字
+     */
+    @RequestMapping("/wxLogin")
+    @ResponseBody
+    public ServerResponse wxLogin(UserInfo userInfo) {
+        try {
+            userService.merge(userInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.INSERT_ERROR.getCode(),ReturnCode.INSERT_ERROR.getMsg());
+        }
+        return ServerResponse.CreateServerResponse(ReturnCode.INSERT_SUCCESS.getCode(),ReturnCode.INSERT_SUCCESS.getMsg());
+    }
 
 }

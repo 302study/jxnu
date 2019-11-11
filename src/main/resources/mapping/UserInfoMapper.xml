@@ -319,5 +319,74 @@
     <include refid="Base_Column_List" />
     from user_info
   </select>
+
+  <insert id="merge" parameterType="com.jxnu.demo.bean.UserInfo">
+    INSERT INTO user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="forbiddenWords != null">
+        forbidden_words,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="forbiddenWords != null">
+        #{forbiddenWords,jdbcType=INTEGER},
+      </if>
+    </trim>
+    ON DUPLICATE KEY UPDATE
+    <if test="name != null">
+    name = #{name,jdbcType=VARCHAR},
+    </if>
+    <if test="photo != null">
+    photo = #{photo,jdbcType=VARCHAR},
+    </if>
+    <if test="telephone != null">
+    telephone = #{telephone,jdbcType=VARCHAR},
+    </if>
+    <if test="email != null">
+    email = #{email,jdbcType=VARCHAR},
+    </if>
+    <if test="state != null">
+    state = #{state,jdbcType=INTEGER},
+    </if>
+    <if test="forbiddenWords != null">
+    forbiddenWords = #{forbiddenWords,jdbcType=INTEGER},
+    </if>
+  </insert>
   
 </mapper>
