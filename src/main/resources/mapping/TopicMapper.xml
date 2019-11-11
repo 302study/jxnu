@@ -9,7 +9,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="content" jdbcType="VARCHAR" property="content" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="like_number" jdbcType="INTEGER" property="likeNumber" />
     <result column="date" jdbcType="DATE" property="date" />
     <result column="priority" jdbcType="INTEGER" property="priority" />
@@ -144,7 +144,7 @@
       user_id, like_number, date, 
       priority, state)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{userId,jdbcType=INTEGER}, #{likeNumber,jdbcType=INTEGER}, #{date,jdbcType=DATE}, 
+      #{userId,jdbcType=VARCHAR}, #{likeNumber,jdbcType=INTEGER}, #{date,jdbcType=DATE},
       #{priority,jdbcType=INTEGER}, #{state,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.jxnu.demo.bean.Topic">
@@ -190,7 +190,7 @@
         #{content,jdbcType=VARCHAR},
       </if>
       <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="likeNumber != null">
         #{likeNumber,jdbcType=INTEGER},
@@ -233,7 +233,7 @@
         content = #{record.content,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=INTEGER},
+        user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.likeNumber != null">
         like_number = #{record.likeNumber,jdbcType=INTEGER},
@@ -261,7 +261,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=VARCHAR},
       like_number = #{record.likeNumber,jdbcType=INTEGER},
       date = #{record.date,jdbcType=DATE},
       priority = #{record.priority,jdbcType=INTEGER},
@@ -284,7 +284,7 @@
         content = #{content,jdbcType=VARCHAR},
       </if>
       <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER},
+        user_id = #{userId,jdbcType=VARCHAR},
       </if>
       <if test="likeNumber != null">
         like_number = #{likeNumber,jdbcType=INTEGER},
@@ -309,7 +309,7 @@
     update topic
     set title = #{title,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR},
       like_number = #{likeNumber,jdbcType=INTEGER},
       date = #{date,jdbcType=DATE},
       priority = #{priority,jdbcType=INTEGER},

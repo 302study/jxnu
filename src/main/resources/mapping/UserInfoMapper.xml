@@ -368,7 +368,7 @@
         #{forbiddenWords,jdbcType=INTEGER},
       </if>
     </trim>
-    ON DUPLICATE KEY UPDATE
+    <trim prefix="ON DUPLICATE KEY UPDATE" suffix="" suffixOverrides=",">
     <if test="name != null">
     name = #{name,jdbcType=VARCHAR},
     </if>
@@ -387,6 +387,7 @@
     <if test="forbiddenWords != null">
     forbiddenWords = #{forbiddenWords,jdbcType=INTEGER},
     </if>
+    </trim>
   </insert>
   
 </mapper>

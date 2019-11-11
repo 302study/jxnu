@@ -53,7 +53,7 @@ public class MassInfo implements Serializable {
      *
      * @mbg.generated
      */
-    private Integer leaderUserid;
+    private String leaderUserid;
 
     /**
      *
@@ -209,7 +209,7 @@ public class MassInfo implements Serializable {
      *
      * @mbg.generated
      */
-    public Integer getLeaderUserid() {
+    public String getLeaderUserid() {
         return leaderUserid;
     }
 
@@ -221,7 +221,7 @@ public class MassInfo implements Serializable {
      *
      * @mbg.generated
      */
-    public void setLeaderUserid(Integer leaderUserid) {
+    public void setLeaderUserid(String leaderUserid) {
         this.leaderUserid = leaderUserid;
     }
 

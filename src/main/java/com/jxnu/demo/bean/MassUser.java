@@ -35,7 +35,7 @@ public class MassUser implements Serializable {
      *
      * @mbg.generated
      */
-    private Integer userId;
+    private String userId;
 
     /**
      *
@@ -110,7 +110,7 @@ public class MassUser implements Serializable {
      *
      * @mbg.generated
      */
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
@@ -122,7 +122,7 @@ public class MassUser implements Serializable {
      *
      * @mbg.generated
      */
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
