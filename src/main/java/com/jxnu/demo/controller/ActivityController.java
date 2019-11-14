@@ -144,7 +144,7 @@ public class ActivityController {
      */
     @RequestMapping("/joinActivity")
     @ResponseBody
-    public ServerResponse joinActivity(Integer userId,Integer activityId){
+    public ServerResponse joinActivity(String userId,Integer activityId){
         try{
             //活动表该活动参加人数+1
             activityService.peopleAddOne(activityId);

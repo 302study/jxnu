@@ -54,7 +54,7 @@ public class MassServiceImpl implements MassService {
     }
 
     @Override
-    public int updateMassLeader(Integer id,Integer user_id) {
+    public int updateMassLeader(Integer id,String user_id) {
         return bac.updateMassLeader(id,user_id);
     }
 
@@ -76,6 +76,15 @@ public class MassServiceImpl implements MassService {
     @Override
     public int joinMass(Integer id) {
         return bac.joinMass(id);
+    }
+
+    @Override
+    public List<MassInfo> selectByUserId(String userId) {
+        List<MassInfo> list=bac.selectByUserId(userId);
+        for(MassInfo i:list){
+            i.createPhotoArray();
+        }
+        return list;
     }
 
 

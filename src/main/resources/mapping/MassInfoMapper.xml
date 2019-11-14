@@ -10,7 +10,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="introduction" jdbcType="VARCHAR" property="introduction" />
     <result column="number" jdbcType="INTEGER" property="number" />
-    <result column="leader_userId" jdbcType="INTEGER" property="leaderUserid" />
+    <result column="leader_userId" jdbcType="VARCHAR" property="leaderUserid" />
     <result column="leader" jdbcType="VARCHAR" property="leader" />
     <result column="priority" jdbcType="INTEGER" property="priority" />
     <result column="state" jdbcType="INTEGER" property="state" />
@@ -145,7 +145,7 @@
       priority, state, photo
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
-      #{number,jdbcType=INTEGER}, #{leaderUserid,jdbcType=INTEGER}, #{leader,jdbcType=VARCHAR}, 
+      #{number,jdbcType=INTEGER}, #{leaderUserid,jdbcType=VARCHAR}, #{leader,jdbcType=VARCHAR},
       #{priority,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{photo,jdbcType=VARCHAR}
       )
   </insert>
@@ -198,12 +198,12 @@
         #{number,jdbcType=INTEGER},
       </if>
       <if test="leaderUserid != null">
-        #{leaderUserid,jdbcType=INTEGER},
+        #{leaderUserid,jdbcType=VARCHAR},
       </if>
       <if test="leaderUserid != null">
         (
         SELECT name from user_info
-        where id=#{leaderUserid,jdbcType=INTEGER}
+        where id=#{leaderUserid,jdbcType=VARCHAR}
         ),
       </if>
       <if test="priority != null">
@@ -247,7 +247,7 @@
         number = #{record.number,jdbcType=INTEGER},
       </if>
       <if test="record.leaderUserid != null">
-        leader_userId = #{record.leaderUserid,jdbcType=INTEGER},
+        leader_userId = #{record.leaderUserid,jdbcType=VARCHAR},
       </if>
       <if test="record.leader != null">
         leader = #{record.leader,jdbcType=VARCHAR},
@@ -276,7 +276,7 @@
       name = #{record.name,jdbcType=VARCHAR},
       introduction = #{record.introduction,jdbcType=VARCHAR},
       number = #{record.number,jdbcType=INTEGER},
-      leader_userId = #{record.leaderUserid,jdbcType=INTEGER},
+      leader_userId = #{record.leaderUserid,jdbcType=VARCHAR},
       leader = #{record.leader,jdbcType=VARCHAR},
       priority = #{record.priority,jdbcType=INTEGER},
       state = #{record.state,jdbcType=INTEGER},
@@ -302,7 +302,7 @@
         number = #{number,jdbcType=INTEGER},
       </if>
       <if test="leaderUserid != null">
-        leader_userId = #{leaderUserid,jdbcType=INTEGER},
+        leader_userId = #{leaderUserid,jdbcType=VARCHAR},
       </if>
       <if test="leader != null">
         leader = #{leader,jdbcType=VARCHAR},
@@ -328,7 +328,7 @@
     set name = #{name,jdbcType=VARCHAR},
       introduction = #{introduction,jdbcType=VARCHAR},
       number = #{number,jdbcType=INTEGER},
-      leader_userId = #{leaderUserid,jdbcType=INTEGER},
+      leader_userId = #{leaderUserid,jdbcType=VARCHAR},
       leader = #{leader,jdbcType=VARCHAR},
       priority = #{priority,jdbcType=INTEGER},
       state = #{state,jdbcType=INTEGER},
@@ -369,6 +369,14 @@
     set number=number+1
     where mass.id=#{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByUserId" resultMap="BaseResultMap">
+    select mi.*
+    from mass_info mi
+    left join mass_user mu
+    on mi.id=mu.mass_id
+   where mu.user_id=#{userId,jdbcType=VARCHAR}
+  </select>
 
 
 </mapper>

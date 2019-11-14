@@ -62,5 +62,10 @@ public class ActivityServiceImpl implements ActivityService {
         return bac.peopleAddOne(id);
     }
 
+    @Override
+    public List<Activity> selectByUserId(String userId) {
+        return bac.selectByUserId(userId);
+    }
+
 
 }

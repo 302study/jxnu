@@ -229,7 +229,7 @@ public class MassController {
      */
     @RequestMapping("/joinMass")
     @ResponseBody
-    public ServerResponse joinMass(int userId,int massId){
+    public ServerResponse joinMass(String userId,int massId){
         try {
             //该社团人数+1
             MassInfo massInfo=new MassInfo();

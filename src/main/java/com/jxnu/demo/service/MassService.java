@@ -16,7 +16,7 @@ public interface MassService {
 
     MassInfo selectByPrimaryKey(Integer id);
 
-    int updateMassLeader(Integer id,Integer user_id);
+    int updateMassLeader(Integer id,String user_id);
 
     List<UserInfo> selectMassUser(Integer id);
 
@@ -24,4 +24,5 @@ public interface MassService {
 
     int joinMass(Integer id);
 
+    List<MassInfo> selectByUserId(String userId);
     }

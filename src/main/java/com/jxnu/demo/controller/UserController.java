@@ -1,8 +1,12 @@
 package com.jxnu.demo.controller;
 
+import com.jxnu.demo.bean.Activity;
+import com.jxnu.demo.bean.MassInfo;
 import com.jxnu.demo.bean.UserInfo;
 import com.jxnu.demo.commoon.ReturnCode;
 import com.jxnu.demo.commoon.ServerResponse;
+import com.jxnu.demo.service.ActivityService;
+import com.jxnu.demo.service.MassService;
 import com.jxnu.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +23,10 @@ public class UserController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    ActivityService activityService;
+    @Autowired
+    MassService massService;
 
     /**
      * 根据id查找用户
@@ -105,6 +113,38 @@ public class UserController {
             return ServerResponse.CreateServerResponse(ReturnCode.INSERT_ERROR.getCode(),ReturnCode.INSERT_ERROR.getMsg());
         }
         return ServerResponse.CreateServerResponse(ReturnCode.INSERT_SUCCESS.getCode(),ReturnCode.INSERT_SUCCESS.getMsg());
+    }
+
+    /**
+     * 通过用户Id，查找该用户参与的活动
+     * @param userInfo
+     * @return
+     */
+    @RequestMapping("/selectActById")
+    @ResponseBody
+    public ServerResponse selectActById(UserInfo userInfo) {
+        try {
+            List<Activity> activityList=activityService.selectByUserId(userInfo.getId());
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),activityList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
+        }
+    }
+
+    /**
+     * 通过用户Id，查找该用户参与的社团
+     */
+    @RequestMapping("/selectMassById")
+    @ResponseBody
+    public ServerResponse selectMassById(UserInfo userInfo) {
+        try {
+            List<MassInfo> massList=massService.selectByUserId(userInfo.getId());
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),massList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
+        }
     }
 
 }
