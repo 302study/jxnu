@@ -305,8 +305,9 @@
     select
     <include refid="Base_Column_List" />
     from user_info
+    where state != 1
     <if test="listId != null">
-      where id in (
+      and id in (
       <foreach collection="listId" item="i" separator=",">
         #{i}
       </foreach>
@@ -318,6 +319,7 @@
     select
     <include refid="Base_Column_List" />
     from user_info
+    where state != 1
   </select>
 
   <insert id="merge" parameterType="com.jxnu.demo.bean.UserInfo">
