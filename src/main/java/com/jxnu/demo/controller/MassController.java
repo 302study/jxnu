@@ -55,7 +55,7 @@ public class MassController {
     @RequestMapping("/selectMassWx")
     @ResponseBody
     public ServerResponse selectMassWx()  {
-        List<MassInfo> list=massService.selectMass();
+        List<MassInfo> list=massService.selectMassWx();
         if(list == null){
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),null);
         }else{

@@ -54,7 +54,7 @@ public class ActivityController {
     public ServerResponse selectActivityWx(){
 
         try{
-            List<Activity> activityList=activityService.selectActivity();
+            List<Activity> activityList=activityService.selectActivityWx();
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),activityList);
         } catch (Exception e) {
             e.printStackTrace();
