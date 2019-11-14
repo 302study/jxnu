@@ -95,4 +95,8 @@ public interface TopicMapper {
     int updateByPrimaryKey(Topic record);
 
     List<Topic> selectTopic();
+
+    List<Topic> selectHotTopic();
+
+    List<Topic> selectRecentTopic();
 }

@@ -345,6 +345,7 @@
     <include refid="Base_Column_List" />
     from activity
     where name like #{name,jdbcType=VARCHAR}
+    and state != 1
   </select>
 
   <update id="peopleAddOne" parameterType="java.lang.Integer">
@@ -359,6 +360,7 @@
     left join activity_user au
     on act.id=au.activity_id
     where au.user_id=#{userId,jdbcType=VARCHAR}
+    and state != 1
   </select>
 
 </mapper>

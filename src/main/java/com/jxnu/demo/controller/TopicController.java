@@ -21,17 +21,49 @@ public class TopicController {
     TopicService topicService;
 
     /**
-     * 查询所有换话题，按照优先级排序
+     * 查询所有话题，按照优先级排序
      * @return
      */
     @RequestMapping("/selectTopic")
     @ResponseBody
     public ServerResponse selectTopic()  {
-        List<Topic> list=topicService.selectTopic();
-        if(list == null){
-            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),null);
-        }else{
+        try{
+            List<Topic> list=topicService.selectTopic();
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),null);
+        }
+    }
+
+    /**
+     * 查询所有话题，按照like_number排序（查询最热门话题）
+     * @return
+     */
+    @RequestMapping("/selectHotTopic")
+    @ResponseBody
+    public ServerResponse selectHotTopic()  {
+        try{
+            List<Topic> list = topicService.selectHotTopic();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),null);
+        }
+    }
+
+    /**
+     * 查询所以有话题，按照date排序（查询最新话题）
+     */
+    @RequestMapping("/selectRecentTopic")
+    @ResponseBody
+    public ServerResponse selectRecentTopic()  {
+        try{
+            List<Topic> list=topicService.selectRecentTopic();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),null);
         }
     }
 

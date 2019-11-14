@@ -321,6 +321,24 @@
     select
     <include refid="Base_Column_List" />
     from topic
+    where state != 1
     order by priority
   </select>
+
+  <select id="selectHotTopic" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from topic
+    where state != 1
+    order by like_number desc
+  </select>
+
+  <select id="selectRecentTopic" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from topic
+    where state != 1
+    order by date desc
+  </select>
+
 </mapper>

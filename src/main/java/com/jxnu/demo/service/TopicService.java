@@ -8,6 +8,10 @@ public interface TopicService {
 
     List<Topic> selectTopic();
 
+    List<Topic> selectHotTopic();
+
+    List<Topic> selectRecentTopic();
+
     Topic selectById(Integer id);
 
     int deleteById(Integer id);
