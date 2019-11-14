@@ -344,10 +344,10 @@
     order by priority
   </select>
 
-  <update id="updateMassLeader" parameterType="java.lang.Integer">
+  <update id="updateMassLeader" parameterType="map">
     update mass_info mass
     set leader=(
-        select name from user_info user where user.id=#{user_id,jdbcType=INTEGER}
+        select name from user_info user where user.id=#{user_id,jdbcType=VARCHAR}
     )
     where mass.id=#{id,jdbcType=INTEGER}
   </update>
