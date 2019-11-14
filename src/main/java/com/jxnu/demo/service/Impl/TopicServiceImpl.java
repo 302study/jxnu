@@ -20,13 +20,13 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public List<Topic> selectHotTopic() {
-        return bac.selectHotTopic();
+    public List<Topic> selectHotTopicWx() {
+        return bac.selectHotTopicWx();
     }
 
     @Override
-    public List<Topic> selectRecentTopic() {
-        return bac.selectRecentTopic();
+    public List<Topic> selectRecentTopicWx() {
+        return bac.selectRecentTopicWx();
     }
 
     @Override

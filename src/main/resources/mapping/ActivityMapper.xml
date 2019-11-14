@@ -340,6 +340,14 @@
     order by priority
   </select>
 
+  <select id="selectAllWx" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from activity
+    where state = 0
+    order by priority
+  </select>
+
   <select id="selectByName" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

@@ -48,6 +48,21 @@ public class MassController {
         }
     }
 
+    /**
+     * wx查找所有社团
+     * @return
+     */
+    @RequestMapping("/selectMassWx")
+    @ResponseBody
+    public ServerResponse selectMassWx()  {
+        List<MassInfo> list=massService.selectMass();
+        if(list == null){
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),null);
+        }else{
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),list);
+        }
+    }
+
     @RequestMapping("/selectByPrimaryKey")
     @ResponseBody
     public ServerResponse selectByPrimaryKey(Integer id)  {
@@ -88,6 +103,25 @@ public class MassController {
 
         try {
             list_user=massService.selectMassUser(mass_id);
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),list_user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg());
+        }
+    }
+
+    /**
+     * wx查找社团所有成员
+     * @param mass_id
+     * @return
+     */
+    @RequestMapping("/selectMassUserWx")
+    @ResponseBody
+    public ServerResponse selectMassUserWx(Integer mass_id) {
+        List<UserInfo> list_user;
+
+        try {
+            list_user=massService.selectMassUserWx(mass_id);
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),list_user);
         } catch (Exception e) {
             e.printStackTrace();

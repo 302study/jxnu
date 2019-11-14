@@ -8,6 +8,8 @@ public interface MassService {
 
     List<MassInfo> selectMass();
 
+    List<MassInfo> selectMassWx();
+
     int add(MassInfo massinfo);
 
     int del(MassInfo massinfo);
@@ -19,6 +21,8 @@ public interface MassService {
     int updateMassLeader(Integer id,String user_id);
 
     List<UserInfo> selectMassUser(Integer id);
+
+    List<UserInfo> selectMassUserWx(Integer id);
 
     List<MassInfo> selectByName(String name);
 

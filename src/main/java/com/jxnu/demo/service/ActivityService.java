@@ -8,6 +8,8 @@ public interface ActivityService {
 
     List<Activity> selectActivity();
 
+    List<Activity> selectActivityWx();
+
     int insertSelective(Activity activity);
 
     int deleteById(Integer id);

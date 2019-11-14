@@ -8,9 +8,9 @@ public interface TopicService {
 
     List<Topic> selectTopic();
 
-    List<Topic> selectHotTopic();
+    List<Topic> selectHotTopicWx();
 
-    List<Topic> selectRecentTopic();
+    List<Topic> selectRecentTopicWx();
 
     Topic selectById(Integer id);
 

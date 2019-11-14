@@ -325,7 +325,7 @@
     order by priority
   </select>
 
-  <select id="selectHotTopic" resultMap="BaseResultMap">
+  <select id="selectHotTopicWx" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from topic
@@ -333,7 +333,7 @@
     order by like_number desc
   </select>
 
-  <select id="selectRecentTopic" resultMap="BaseResultMap">
+  <select id="selectRecentTopicWx" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from topic

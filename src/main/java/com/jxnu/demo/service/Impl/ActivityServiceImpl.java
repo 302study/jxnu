@@ -23,6 +23,15 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     /**
+     * wx按照优先级排序，查询所以的活动
+     * @return
+     */
+    @Override
+    public List<Activity> selectActivityWx(){
+        return bac.selectAllWx();
+    }
+
+    /**
      * 添加新的活动(单个添加)
      * @param activity
      * @return

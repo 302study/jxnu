@@ -46,6 +46,23 @@ public class ActivityController {
     }
 
     /**
+     *  wx查询活动页面的所有活动
+     *  按优先级排序
+     */
+    @RequestMapping("/selectActivityWx")
+    @ResponseBody
+    public ServerResponse selectActivityWx(){
+
+        try{
+            List<Activity> activityList=activityService.selectActivity();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),activityList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
+        }
+    }
+
+    /**
      *  添加新的活动(单个添加)
      *  对象内元素可为空
      *  不用添加ActivityUser的数据

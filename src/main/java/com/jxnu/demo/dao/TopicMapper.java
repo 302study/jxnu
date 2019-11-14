@@ -96,7 +96,7 @@ public interface TopicMapper {
 
     List<Topic> selectTopic();
 
-    List<Topic> selectHotTopic();
+    List<Topic> selectHotTopicWx();
 
-    List<Topic> selectRecentTopic();
+    List<Topic> selectRecentTopicWx();
 }

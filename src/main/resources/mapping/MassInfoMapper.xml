@@ -357,6 +357,13 @@
     order by priority
   </select>
 
+  <select id="SelectMassWx" resultMap="BaseResultMap">
+    select *
+    from mass_info
+    where state = 0
+    order by priority
+  </select>
+
   <update id="updateMassLeader" parameterType="map">
     update mass_info mass
     set leader=(
@@ -373,6 +380,16 @@
     where  m.mass_id=#{id,jdbcType=INTEGER}
     and u.state != 1
   </select>
+
+  <select id="selectMassUserWx" resultMap="UserInfoMap">
+    select u.*
+    from mass_user m
+    left join user_info u
+    on m.user_id=u.id
+    where  m.mass_id=#{id,jdbcType=INTEGER}
+    and u.state = 0
+  </select>
+
   <select id="selectByName" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

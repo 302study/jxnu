@@ -24,6 +24,15 @@ public class MassServiceImpl implements MassService {
         return list;
     }
 
+    @Override
+    public List<MassInfo> selectMassWx(){
+        List<MassInfo> list=bac.SelectMassWx();
+        for(MassInfo i:list){
+            i.createPhotoArray();
+        }
+        return list;
+    }
+
     /**
      * 将massinfo添加进社团表中
      * @param massinfo
@@ -61,6 +70,11 @@ public class MassServiceImpl implements MassService {
     @Override
     public List<UserInfo> selectMassUser(Integer id) {
         return bac.selectMassUser(id);
+    }
+
+    @Override
+    public List<UserInfo> selectMassUserWx(Integer id) {
+        return bac.selectMassUserWx(id);
     }
 
     @Override

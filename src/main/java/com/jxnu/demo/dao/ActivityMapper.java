@@ -96,6 +96,8 @@ public interface ActivityMapper {
 
     List<Activity> selectAll();
 
+    List<Activity> selectAllWx();
+
     List<Activity> selectByName(String name);
 
     List<Activity> selectById(Integer id);

@@ -37,14 +37,14 @@ public class TopicController {
     }
 
     /**
-     * 查询所有话题，按照like_number排序（查询最热门话题）
+     * wx查询所有话题，按照like_number排序（查询最热门话题）
      * @return
      */
     @RequestMapping("/selectHotTopic")
     @ResponseBody
-    public ServerResponse selectHotTopic()  {
+    public ServerResponse selectHotTopicWx()  {
         try{
-            List<Topic> list = topicService.selectHotTopic();
+            List<Topic> list = topicService.selectHotTopicWx();
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),list);
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,9 +57,9 @@ public class TopicController {
      */
     @RequestMapping("/selectRecentTopic")
     @ResponseBody
-    public ServerResponse selectRecentTopic()  {
+    public ServerResponse selectRecentTopicWx()  {
         try{
-            List<Topic> list=topicService.selectRecentTopic();
+            List<Topic> list=topicService.selectRecentTopicWx();
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),list);
         } catch (Exception e) {
             e.printStackTrace();
