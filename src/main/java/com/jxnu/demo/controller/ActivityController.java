@@ -7,11 +7,13 @@ import com.jxnu.demo.commoon.ReturnCode;
 import com.jxnu.demo.commoon.ServerResponse;
 import com.jxnu.demo.service.ActivityService;
 import com.jxnu.demo.service.ActivityUserService;
+import org.apache.ibatis.annotations.Param;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
@@ -87,7 +89,7 @@ public class ActivityController {
      */
     @RequestMapping("/selectByName")
     @ResponseBody
-    public ServerResponse selectByName(String name){
+    public ServerResponse selectByName(@RequestParam(value = "name") String name){
         try{
             List<Activity> activityList=activityService.selectByName(name);
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),activityList);
