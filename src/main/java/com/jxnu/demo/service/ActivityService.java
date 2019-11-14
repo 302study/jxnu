@@ -10,6 +10,8 @@ public interface ActivityService {
 
     List<Activity> selectActivityWx();
 
+    List<Activity> selectActivityByMassIdWx(Integer massId);
+
     int insertSelective(Activity activity);
 
     int deleteById(Integer id);
@@ -23,4 +25,6 @@ public interface ActivityService {
     int peopleAddOne(Integer id);
 
     List<Activity> selectByUserId(String userId);
+
+
 }

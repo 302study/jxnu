@@ -32,6 +32,15 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     /**
+     * wx查询某社团的活动接口
+     * @return
+     */
+    @Override
+    public List<Activity> selectActivityByMassIdWx(Integer massId){
+        return bac.selectActivityByMassIdWx(massId);
+    }
+
+    /**
      * 添加新的活动(单个添加)
      * @param activity
      * @return

@@ -348,6 +348,15 @@
     order by priority
   </select>
 
+  <select id="selectActivityByMassIdWx" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from activity
+    where state = 0
+        and mass_id = #{massId,jdbcType=INTEGER}
+    order by priority
+  </select>
+
   <select id="selectByName" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

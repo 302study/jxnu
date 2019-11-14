@@ -63,6 +63,23 @@ public class ActivityController {
     }
 
     /**
+     *  wx查询某社团的活动接口
+     *  按优先级排序
+     */
+    @RequestMapping("/selectActivityByMassIdWx")
+    @ResponseBody
+    public ServerResponse selectActivityByMassIdWx(Integer massId){
+
+        try{
+            List<Activity> activityList=activityService.selectActivityByMassIdWx(massId);
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),activityList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
+        }
+    }
+
+    /**
      *  添加新的活动(单个添加)
      *  对象内元素可为空
      *  不用添加ActivityUser的数据
