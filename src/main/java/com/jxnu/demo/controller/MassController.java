@@ -202,7 +202,10 @@ public class MassController {
                 massInfo.setPhoto(photo);
             }
             massService.update(massInfo);
-            massService.updateMassLeader(massInfo.getId(),massInfo.getLeaderUserid());
+            if(massInfo.getLeaderUserid()!=null){
+                massService.updateMassLeader(massInfo.getId(),massInfo.getLeaderUserid());
+            }
+
             return ServerResponse.CreateServerResponse(ReturnCode.UPDATE_SUCCESS.getCode(),ReturnCode.UPDATE_SUCCESS.getMsg());
         }catch (Exception e){
             e.printStackTrace();
