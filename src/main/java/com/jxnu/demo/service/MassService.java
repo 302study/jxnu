@@ -28,5 +28,6 @@ public interface MassService {
 
     int joinMass(Integer id);
 
+
     List<MassInfo> selectByUserId(String userId);
     }
