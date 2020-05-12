@@ -377,7 +377,7 @@
     left join activity_user au
     on act.id=au.activity_id
     where au.user_id=#{userId,jdbcType=VARCHAR}
-    and state != 1
+    and act.state != 1 and au.state != 1
   </select>
 
 </mapper>

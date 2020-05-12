@@ -410,7 +410,7 @@
     left join mass_user mu
     on mi.id=mu.mass_id
     where mu.user_id=#{userId,jdbcType=VARCHAR}
-    and state != 1
+    and mu.state != 1 and mi.state != 1
   </select>
 
 
