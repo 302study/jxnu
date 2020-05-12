@@ -20,7 +20,7 @@
                 driverClass="com.mysql.jdbc.Driver"
                 connectionURL="jdbc:mysql://47.100.242.234:3306/jxnu?characterEncoding=utf8"
                 userId="root"
-                password="123456"/>
+                password="n302123456"/>
 
         <!-- 生成POJO对象，并将类放到com.songguoliang.springboot.entity包下 -->
         <javaModelGenerator targetPackage="com.jxnu.demo.bean" targetProject="src/main/java"></javaModelGenerator>
@@ -30,7 +30,7 @@
 
         <!-- 生成mapper xml对应dao接口，放到com.songguoliang.springboot.mapper包下-->
         <javaClientGenerator targetPackage="com.jxnu.demo.dao" targetProject="src/main/java" type="XMLMAPPER"></javaClientGenerator>
-        <table tableName="mass_info">
+        <table tableName="mass_apply">
 
         </table>
 <!--        &lt;!&ndash; table标签可以有多个，至少一个，tableName指定表名，可以使用_和%通配符 &ndash;&gt;-->

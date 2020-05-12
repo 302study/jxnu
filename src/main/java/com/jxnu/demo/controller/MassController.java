@@ -1,14 +1,13 @@
 package com.jxnu.demo.controller;
 
 import com.jxnu.demo.bean.Contentuser;
+import com.jxnu.demo.bean.MassApply;
 import com.jxnu.demo.bean.MassInfo;
 import com.jxnu.demo.bean.UserInfo;
 import com.jxnu.demo.commoon.ReturnCode;
 import com.jxnu.demo.commoon.ServerResponse;
-import com.jxnu.demo.service.ContentUseService;
-import com.jxnu.demo.service.MassService;
-import com.jxnu.demo.service.MassUserService;
-import com.jxnu.demo.service.UserService;
+import com.jxnu.demo.service.*;
+import com.jxnu.demo.service.Impl.MassServiceImpl;
 import com.jxnu.demo.tool.FtpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -31,6 +34,8 @@ public class MassController {
     MassUserService massUserService;
     @Autowired
     UserService userService;
+    @Autowired
+    MassApplyService massApplyService;
 
 
     /**
@@ -254,7 +259,7 @@ public class MassController {
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),path+uuid);
         } catch (Exception e) {
             e.printStackTrace();
-            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg());
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
         }
     }
 
@@ -278,7 +283,58 @@ public class MassController {
             return ServerResponse.CreateServerResponse(ReturnCode.INSERT_SUCCESS.getCode(),ReturnCode.INSERT_SUCCESS.getMsg());
         } catch (Exception e) {
             e.printStackTrace();
-            return ServerResponse.CreateServerResponse(ReturnCode.INSERT_ERROR.getCode(),ReturnCode.INSERT_SUCCESS.getMsg());
+            return ServerResponse.CreateServerResponse(ReturnCode.INSERT_ERROR.getCode(),ReturnCode.INSERT_ERROR.getMsg());
+        }
+    }
+
+    /**
+     * 用户加入社团申请
+     * @param userId
+     * @param massId
+     * @return
+     */
+    @RequestMapping("/joinMassWx")
+    @ResponseBody
+    public ServerResponse joinMassWx(String userId,int massId){
+        try {
+            //该社团人数+1
+            MassApply massApply=new MassApply();
+            massApply.setMassId(massId);
+            massApply.setUserId(userId);
+            massApply.setCreatedate(new Date());
+            Integer i=massApplyService.addApply(massApply);
+            if(i!=null){
+                return ServerResponse.CreateServerResponse(ReturnCode.INSERT_SUCCESS.getCode(),ReturnCode.INSERT_SUCCESS.getMsg());
+            }
+            else {
+                return ServerResponse.CreateServerResponse(ReturnCode.INSERT_ERROR.getCode(),ReturnCode.INSERT_ERROR.getMsg());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.INSERT_ERROR.getCode(),ReturnCode.INSERT_ERROR.getMsg());
+        }
+    }
+
+
+    /**
+     * 用户加入社团申请
+     *
+     * @return
+     */
+    @RequestMapping("/selectMassApply")
+    @ResponseBody
+    public ServerResponse selectMassApply(){
+        try {
+            List<Map<String,String>> list=massApplyService.selectMassApply();
+            if(list!=null){
+                return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),list);
+            }
+            else {
+                return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
         }
     }
 
