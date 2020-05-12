@@ -135,5 +135,24 @@ public class TopicController {
         return ServerResponse.CreateServerResponse(ReturnCode.INSERT_SUCCESS.getCode(),ReturnCode.INSERT_SUCCESS.getMsg());
     }
 
+    /**
+     * 根据话题名称查找社团
+     * @param name
+     * @return
+     */
+    @RequestMapping("/selectByName")
+    @ResponseBody
+    public ServerResponse selectByName(String name){
+        try{
+            List<Topic> massList=topicService.selectByName(name);
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),massList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
+        }
+    }
+
+
+
 
 }
