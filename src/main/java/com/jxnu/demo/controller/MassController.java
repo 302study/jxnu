@@ -278,7 +278,12 @@ public class MassController {
             String path="http://47.100.242.234/images/";
             boolean flag = new FtpUtil().uploadFile("/home/ftpuser/images",uuid,file.getInputStream());
 
-            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),path+uuid);
+           if(flag){
+               return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),path+uuid);
+           }
+           else {
+               return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
+           }
         } catch (Exception e) {
             e.printStackTrace();
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
