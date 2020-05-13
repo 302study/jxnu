@@ -99,4 +99,6 @@ public interface TopicMapper {
     List<Topic> selectHotTopicWx();
 
     List<Topic> selectRecentTopicWx();
+
+    List<Topic> selectByName(String name);
 }

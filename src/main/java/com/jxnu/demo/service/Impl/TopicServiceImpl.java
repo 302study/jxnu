@@ -51,4 +51,13 @@ public class TopicServiceImpl implements TopicService {
     public int updateSelective(Topic topic) {
         return bac.updateByPrimaryKeySelective(topic);
     }
+
+    @Override
+    public List<Topic> selectByName(String name) {
+        name="%"+name+"%";
+        List<Topic> list=bac.selectByName(name);
+
+        return list;
+    }
+
 }

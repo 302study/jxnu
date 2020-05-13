@@ -20,4 +20,6 @@ public interface TopicService {
 
     int updateSelective(Topic topic);
 
+    List<Topic> selectByName(String name);
+
 }
