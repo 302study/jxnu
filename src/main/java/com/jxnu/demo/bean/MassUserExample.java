@@ -324,7 +324,7 @@ public class MassUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andUserIdEqualTo(Integer value) {
+        public Criteria andUserIdEqualTo(String value) {
             addCriterion("user_id =", value, "userId");
             return (Criteria) this;
         }

@@ -1,9 +1,6 @@
 package com.jxnu.demo.controller;
 
-import com.jxnu.demo.bean.Contentuser;
-import com.jxnu.demo.bean.MassApply;
-import com.jxnu.demo.bean.MassInfo;
-import com.jxnu.demo.bean.UserInfo;
+import com.jxnu.demo.bean.*;
 import com.jxnu.demo.commoon.ReturnCode;
 import com.jxnu.demo.commoon.ServerResponse;
 import com.jxnu.demo.service.*;
@@ -97,7 +94,7 @@ public class MassController {
     }
 
     /**
-     * 查找社团所有成员
+     * 查找社团成员
      * @param mass_id
      * @return
      */
@@ -145,6 +142,31 @@ public class MassController {
         try {
             list_user=userService.selectUser();
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),list_user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg());
+        }
+    }
+
+    /**
+     * 查找社团用户
+     * @return
+     */
+    @RequestMapping("/selectUserInMass")
+    @ResponseBody
+    public ServerResponse selectUserInMass(String userId,int massId){
+        MassUserExample example=new MassUserExample();
+        MassUserExample.Criteria criteria = example.createCriteria();
+        criteria.andMassIdEqualTo(massId);
+        criteria.andUserIdEqualTo(userId);
+        try {
+            List<MassUser> list_user=massUserService.selectByExample(example);
+            if(list_user.size()>0){
+                return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),list_user);
+            }
+            else {
+                return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),"没有用户  ");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_SUCCESS.getMsg());
@@ -263,6 +285,8 @@ public class MassController {
         }
     }
 
+
+
     /**
      * 用户加入社团
      * @param userId
@@ -273,6 +297,7 @@ public class MassController {
     @ResponseBody
     public ServerResponse joinMass(String userId,int massId){
         try {
+
             //该社团人数+1
             MassInfo massInfo=new MassInfo();
             massInfo.setId(massId);
@@ -297,6 +322,9 @@ public class MassController {
     @ResponseBody
     public ServerResponse joinMassWx(String userId,int massId){
         try {
+            if(selectUserInMass(userId,massId).getStatus()!=30){
+                return ServerResponse.CreateServerResponse(ReturnCode.INSERT_ERROR.getCode(),ReturnCode.INSERT_ERROR.getMsg());
+            }
             //该社团人数+1
             MassApply massApply=new MassApply();
             massApply.setMassId(massId);
@@ -317,7 +345,7 @@ public class MassController {
 
 
     /**
-     * 用户加入社团申请
+     * 查找所有申请
      *
      * @return
      */
@@ -335,6 +363,31 @@ public class MassController {
         } catch (Exception e) {
             e.printStackTrace();
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
+        }
+    }
+
+    /**
+     * 修改状态
+     *
+     * @return
+     */
+    @RequestMapping("/updateMassApply")
+    @ResponseBody
+    public ServerResponse updateMassApply(MassApply massApply){
+        try {
+            Integer i=massApplyService.updateByPrimaryKey(massApply);
+            if(massApply.getStatus().equals(1)||massApply.getStatus().equals("1")){
+                joinMass(massApply.getUserId(),massApply.getMassId());
+            }
+            if(i!=null){
+                return ServerResponse.CreateServerResponse(ReturnCode.UPDATE_SUCCESS.getCode(),ReturnCode.UPDATE_SUCCESS.getMsg());
+            }
+            else {
+                return ServerResponse.CreateServerResponse(ReturnCode.UPDATE_ERROR.getCode(),ReturnCode.UPDATE_ERROR.getMsg());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.UPDATE_ERROR.getCode(),ReturnCode.UPDATE_ERROR.getMsg());
         }
     }
 

@@ -1,6 +1,7 @@
 package com.jxnu.demo.service.Impl;
 
 import com.jxnu.demo.bean.MassUser;
+import com.jxnu.demo.bean.MassUserExample;
 import com.jxnu.demo.dao.MassUserMapper;
 import com.jxnu.demo.service.MassUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,4 +58,11 @@ public class MassUserServiceImpl implements MassUserService {
         massUser.setState(state);
         return bac.insertSelective(massUser);
     }
+
+    @Override
+    public List<MassUser> selectByExample(MassUserExample example) {
+        return bac.selectByExample(example);
+    }
+
+
 }

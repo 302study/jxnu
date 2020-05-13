@@ -272,8 +272,8 @@
     SELECT
 	a.id,
 	DATE_FORMAT( createDate, "%Y-%m-%d" ) AS createDate,
-	b.NAME massName,
-	c.NAME userName
+	b.NAME massName,b.id massId,
+	c.NAME userName,c.id userId
 FROM
 	mass_apply a,
 	mass_info b,
