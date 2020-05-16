@@ -8,4 +8,5 @@ import java.util.Map;
 public interface MassApplyService {
     int addApply(MassApply massApply);
     List<Map<String,String>> selectMassApply();
+    int updateByPrimaryKey(MassApply record);
 }

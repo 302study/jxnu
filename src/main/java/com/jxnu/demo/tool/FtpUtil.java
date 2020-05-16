@@ -113,10 +113,13 @@ public class FtpUtil {
             System.out.println("开始上传文件");
             initFtpClient();
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-            CreateDirecroty(pathname);
+            if(CreateDirecroty(pathname)) System.out.println("创建文件夹成功");
+            else System.out.println("创建文件夹失败");
             ftpClient.makeDirectory(pathname);
             ftpClient.changeWorkingDirectory(pathname);
-            ftpClient.storeFile(fileName, inputStream);
+            if(!ftpClient.storeFile(fileName, inputStream)){
+                return false;
+            }
             inputStream.close();
             ftpClient.logout();
             System.out.println("上传文件成功");

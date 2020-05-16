@@ -1,5 +1,8 @@
 package com.jxnu.demo.service;
 
+import com.jxnu.demo.bean.MassUser;
+import com.jxnu.demo.bean.MassUserExample;
+
 import java.util.List;
 
 public interface MassUserService {
@@ -11,4 +14,5 @@ public interface MassUserService {
     int massDelUser(Integer massId);
 
     int add(Integer massId,String userId,Integer state);
+    List<MassUser> selectByExample(MassUserExample example);
 }

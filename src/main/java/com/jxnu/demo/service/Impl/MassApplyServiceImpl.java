@@ -23,4 +23,9 @@ public class MassApplyServiceImpl implements MassApplyService {
     public List<Map<String, String>> selectMassApply() {
         return massApplyMapper.selectMassApply();
     }
+
+    @Override
+    public int updateByPrimaryKey(MassApply record) {
+        return massApplyMapper.updateByPrimaryKeySelective(record);
+    }
 }
