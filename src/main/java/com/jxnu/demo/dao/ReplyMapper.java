@@ -93,4 +93,7 @@ public interface ReplyMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Reply record);
+
+    List<Reply> SeletReplyByTopId(Integer topicId);
+
 }

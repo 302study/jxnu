@@ -13,6 +13,7 @@
     <result column="date" jdbcType="DATE" property="date" />
     <result column="like_number" jdbcType="INTEGER" property="likeNumber" />
     <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="userName" jdbcType="VARCHAR" property="userName" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -164,9 +165,7 @@
       <if test="topicId != null">
         topic_id,
       </if>
-      <if test="date != null">
         date,
-      </if>
       <if test="likeNumber != null">
         like_number,
       </if>
@@ -187,9 +186,7 @@
       <if test="topicId != null">
         #{topicId,jdbcType=INTEGER},
       </if>
-      <if test="date != null">
-        #{date,jdbcType=DATE},
-      </if>
+        sysdate(),
       <if test="likeNumber != null">
         #{likeNumber,jdbcType=INTEGER},
       </if>
@@ -300,4 +297,13 @@
       state = #{state,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="SeletReplyByTopId" parameterType="map" resultMap="BaseResultMap">
+    select r.*,u.`name` as userName from reply r
+    left join user_info u
+    on r.user_id=u.id
+    where topic_id = #{topicId,jdbcType=INTEGER}
+    order by date desc
+  </select>
+
 </mapper>

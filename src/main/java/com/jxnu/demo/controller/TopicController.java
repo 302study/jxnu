@@ -1,5 +1,6 @@
 package com.jxnu.demo.controller;
 
+import com.jxnu.demo.bean.Reply;
 import com.jxnu.demo.bean.Topic;
 import com.jxnu.demo.commoon.ReturnCode;
 import com.jxnu.demo.commoon.ServerResponse;
@@ -152,6 +153,39 @@ public class TopicController {
         }
     }
 
+    /**
+     * 回复话题
+     * @param reply
+     * @return
+     */
+    @RequestMapping("/replyTopic")
+    @ResponseBody
+    public ServerResponse replyTopic(Reply reply){
+        try{
+            topicService.replyTopic(reply);
+            return ServerResponse.CreateServerResponse(ReturnCode.INSERT_SUCCESS.getCode(),ReturnCode.INSERT_SUCCESS.getMsg());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.INSERT_ERROR.getCode(),ReturnCode.INSERT_ERROR.getMsg());
+        }
+    }
+
+    /**
+     * 根据话题ID查找回复
+     * @param reply
+     * @return
+     */
+    @RequestMapping("/SelectReplyByTopId")
+    @ResponseBody
+    public ServerResponse SelectReplyByTopId(Reply reply){
+        try{
+            List<Reply> List = topicService.SeletReplyByTopId(reply);
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),List);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
+        }
+    }
 
 
 

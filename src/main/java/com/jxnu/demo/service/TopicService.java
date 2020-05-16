@@ -1,5 +1,6 @@
 package com.jxnu.demo.service;
 
+import com.jxnu.demo.bean.Reply;
 import com.jxnu.demo.bean.Topic;
 
 import java.util.List;
@@ -22,4 +23,7 @@ public interface TopicService {
 
     List<Topic> selectByName(String name);
 
+    int replyTopic(Reply reply);
+
+    List<Reply> SeletReplyByTopId(Reply reply);
 }

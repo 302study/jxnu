@@ -1,11 +1,15 @@
 package com.jxnu.demo.service.Impl;
 
+import com.jxnu.demo.bean.Reply;
 import com.jxnu.demo.bean.Topic;
+import com.jxnu.demo.dao.ReplyMapper;
 import com.jxnu.demo.dao.TopicMapper;
 import com.jxnu.demo.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -13,6 +17,8 @@ public class TopicServiceImpl implements TopicService {
 
     @Autowired
     TopicMapper bac;
+    @Autowired
+    ReplyMapper replybac;
 
     @Override
     public List<Topic> selectTopic() {
@@ -58,6 +64,16 @@ public class TopicServiceImpl implements TopicService {
         List<Topic> list=bac.selectByName(name);
 
         return list;
+    }
+
+    @Override
+    public int replyTopic(Reply reply){
+        return replybac.insertSelective(reply);
+    }
+
+    @Override
+    public List<Reply> SeletReplyByTopId(Reply reply){
+        return replybac.SeletReplyByTopId(reply.getTopicId());
     }
 
 }
