@@ -1,11 +1,13 @@
 package com.jxnu.demo.controller;
 
+import com.jcraft.jsch.ChannelSftp;
 import com.jxnu.demo.bean.*;
 import com.jxnu.demo.commoon.ReturnCode;
 import com.jxnu.demo.commoon.ServerResponse;
 import com.jxnu.demo.service.*;
 import com.jxnu.demo.service.Impl.MassServiceImpl;
 import com.jxnu.demo.tool.FtpUtil;
+import com.jxnu.demo.tool.SFTPUTIL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -274,12 +276,18 @@ public class MassController {
     @ResponseBody
     public ServerResponse upload(MultipartFile file){
         try {
+            boolean flag=true;
+            ChannelSftp s= SFTPUTIL.getConnectIP("47.100.242.234","22",
+                    "ftpuser","542344733");
             String uuid=UUID.randomUUID().toString()+".jpg";
-            String path="http://47.100.242.234/images/";
-            boolean flag = new FtpUtil().uploadFile("/home/ftpuser/images",uuid,file.getInputStream());
+            SFTPUTIL.upload("images",file.getInputStream(),uuid,s);
+            String path="http://47.100.242.234/images/"+uuid;
+//            String uuid=UUID.randomUUID().toString()+".jpg";
+//            String path="http://47.100.242.234/images/";
+//            boolean flag = new FtpUtil().uploadFile("/home/ftpuser/images",uuid,file.getInputStream());
 
            if(flag){
-               return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),path+uuid);
+               return ServerResponse.CreateServerResponse(ReturnCode.SELECT_SUCCESS.getCode(),ReturnCode.SELECT_SUCCESS.getMsg(),path);
            }
            else {
                return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
@@ -289,6 +297,8 @@ public class MassController {
             return ServerResponse.CreateServerResponse(ReturnCode.SELECT_ERROR.getCode(),ReturnCode.SELECT_ERROR.getMsg());
         }
     }
+
+
 
 
 

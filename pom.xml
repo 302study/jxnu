@@ -100,6 +100,12 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.2.3</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.jcraft/jsch -->
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.54</version>
+        </dependency>
 
     </dependencies>
 
@@ -126,9 +132,6 @@
                         <artifactId>mysql-connector-java</artifactId>
                         <version>5.1.45</version>
                     </dependency>
-
-
-
                 </dependencies>
             </plugin>
             <!--docker-->
